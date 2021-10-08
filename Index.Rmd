@@ -3,7 +3,7 @@ title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
 output: html_notebook
 ---
 
-Hello there! This is a notebook (which you will probably be viewing in web format) where you'll be introduced to analyzing quantitative data with the R programming language. In this notebook, I will only help you learn the R commands to help you with your data analysis. No prior knowledge in coding is needed! I'll try to explain things in the simplest terms. However, if you still find something confusing, you can email me at: randy19981223@gmail.com and ask for clarifications. Let's start learning!
+Hello there! This is a notebook (which you will probably be viewing in web format) where you'll be introduced to analyzing quantitative data with the R programming language. In this notebook, I will only help you learn the R commands to help you with your data analysis. No prior knowledge in coding is needed! I'll try to explain things in the simplest terms. However, if you still find something confusing, or even find erroneous information on this website/notebook, you can email me at: randy19981223@gmail.com and ask for clarifications. Let's start learning!
 
 In this notebook, I will explain some statistics concepts and do an exemplary data analysis using the SAT and ACT data set provided by the `psych` package. The analysis will cover both descriptive and inferential statistics. First, I'll start by introducing some basic concepts that might be helpful in your analysis process. Then I'll move on to the
 
@@ -11,6 +11,12 @@ In this notebook, I will explain some statistics concepts and do an exemplary da
 [Chapter 1: A very brief introduction to R]() <br><br>
 [Chapter 2: Inspecting your data & descriptive statistical analysis]() <br><br>
 [Chapter 3: Inferential statistical analysis]() <br><br>
+
+
+``` {class.source = "erratum" eval = FALSE}
+# ERRATUM: (LAST UPDATED 2021/10/10)
+
+```
 
 
 
