@@ -25,12 +25,24 @@ While it is not mandatory, I'd still recommend getting RStudio because it is muc
 <ul>
 <li> <b>Make sure that you don't update R while conducting your analysis:</b> R comes with multiple versions, and new updates get published from time to time. I know it's tempting to always have the latest version of R available at hand. However, I do not recommend doing so since some of the packages that you are using might not be supported, or are even deprecated, in the later versions of R. So, try not to upgrade your R version while you work on your data. </li>
 <li> <b>Use meaningful/sensible/recognizable variable names:</b> Like other programming languages, you have to work with variables in R. Try to make your variable names meaningful. For example, if you are investigating the relationship (correlation) between height and weight, you might want to name the variable with weight data in it as "weight" or other names that your could actually recognize the next time you open your R script. 
-<li> <b>Write your code in a script</b>: Although R allows you to write and execute code directly in the console, the code you type in the console will not be saved. This means that your code and execution results will be cleared if you do not save your code in a script. So, you should always write your code in a script and execute them using `cmd+enter` on mac or `ctrl + enter` on windows computers. 
+<li> <b>Write your code in a script</b>: Although R allows you to write and execute code directly in the console, the code you type in the console will not be saved. This means that your code and execution results will be cleared if you do not save your code in a script. So, you should always write your code in a dedicated R script and execute them using `cmd+enter` on mac or `ctrl + enter` on windows computers. 
 </ul>
 
 ### 0.3 Some terminologies in R: 
-<ul>
-<li><b>String:</b> A sequence of characters or numbers enclosed with double quotation marks
-<li><b>Data-frame:</b> A table-like or two dimensional array with data stored in it.
-</ul>
+
+| Terminology/Jargon| Definition/Description|
+|:------:|:------:|
+|String| A sequence of characters or numbers enclosed with double quotation marks|
+|Data-frame| A table-like or two dimensional array with data stored in it| 
+|Function| |
+|Arguments| |
+
+
+<br><br><br>
+
+[Go back to table of contents]() <br>
+[Go to chapter 1]()
+
+<br><br><br>
+
 

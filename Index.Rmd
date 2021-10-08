@@ -9,11 +9,13 @@ Hello there! This is a notebook (which you will probably be viewing in web forma
 
 In this notebook, I will explain some statistics concepts and do an exemplary data analysis using the SAT and ACT data set provided by the `psych` package. The analysis will cover both descriptive and inferential statistics. First, I'll start by introducing some basic concepts that might be helpful in your analysis process. Then I'll move on to the
 
+<strong>
 [Chapter 0: Getting things started]() <br><br>
 [Chapter 1: A very brief introduction to R]() <br><br>
 [Chapter 2: Inspecting your data & descriptive statistical analysis]() <br><br>
 [Chapter 3: Inferential statistical analysis]() <br><br>
-
+[Chapter 4: Item analysis in questionnaires]() <br><br>
+</strong> 
 
 ``` {text class.source = "code2", eval = FALSE}
 ERRATUM: (LAST UPDATED 2021/10/10)

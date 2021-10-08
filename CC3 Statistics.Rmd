@@ -61,41 +61,6 @@ Next we'll move on to describing data with R.
 
 [Go on to the next chapter]() <br>
 [Go back to main page]()
-
-# 2. Descriptive statistics 
-Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. It would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. However, with descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating.
- 
-## 2.1 Observing the data set
-But before we really enter the analysis, lets take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the sat.act data set, there are 700 entries). So, to look at the first few rows of the data, use the `head()` function. 
-``` {r class.source = "code1"}
-library(psych)
-library(knitr)
-test_score <- sat.act
-kable(head(test_score)) # ignore the "kable()" function. It's just here to beautify the output in the website
-```
-We can see that the data consists of 700 rows (700 entries) and 6 variables: gender, education, age, ACT, SATV (SAT Verbal score), and SATQ (SAT Quantitative score). Here I'll use a table to describe the variables contained in this data set: 
-
-|Variable|Description|
-|:---:|---|
-|gender| male = 1, female = 2|
-|education| self-reported education 1 = high school .... 5 = graduate work|
-|age| age|
-|ACT| ACT Composite scores ranging from 1 - 36|
-|SATV| SAT Verbal scores ranging from 200 - 800|
-|SATQ| SAT Quantitative scores ranging from 200 - 800| 
-
-## 2.2 Descriptive statistics analysis
-To do a descriptive statistics analysis, it is as simple as using only 1 line of code, using the `describe()` function from the `psych` package. See the following example: 
-``` {r class.source = "code1"}
-# function to use: describe() 
-# Syntax: describe(data)
-
-# Example: 
-library(knitr)
-kable(describe(test_score)) #ignore the "kable()" function. It's just here to beautify the output in the website
-```
-
-From this output table, we can see that the function gives us several output
 # 3. Inferential statistics
 Some other inferential statistics function in R that you might find useful
 
