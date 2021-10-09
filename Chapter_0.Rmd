@@ -1,9 +1,10 @@
 ---
-title: "Chapter 0: Getting things started"
+title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
 ---
+# Chapter 0. Getting things started
 
 # 0.0 Recommended references for R language
 One of the advantages of R is that it has an incredibly supportive community. Its affiliating packages are (mostly) well documented, and there are a lot of quality learning resources online. Here are some sources of information that you might consider useful when learning R: 
@@ -28,21 +29,28 @@ While it is not mandatory, I'd still recommend getting RStudio because it is muc
 <li> <b>Write your code in a script</b>: Although R allows you to write and execute code directly in the console, the code you type in the console will not be saved. This means that your code and execution results will be cleared if you do not save your code in a script. So, you should always write your code in a dedicated R script and execute them using `cmd+enter` on mac or `ctrl + enter` on windows computers. 
 </ul>
 
-### 0.3 Some terminologies in R: 
+### 0.3 Glossary of jargon in R: 
 
 | Terminology/Jargon| Definition/Description|
 |:------:|:------:|
 |String| A sequence of characters or numbers enclosed with double quotation marks|
 |Data-frame| A table-like or two dimensional array with data stored in it| 
+|Data set (dataset) | a collection of related sets of information that is composed of separate elements but can be manipulated as a unit by a computer|
 |Function| |
 |Arguments| |
 
-
+### 0.4 A visual guide to using RStudio
+![A picture showing the user interface of RStudio](R-STD.png)
 <br><br><br>
 
-[Go back to table of contents]() <br>
+[Go back to table of contents](https://ludougan123234.githu.io/Index) <br>
 [Go to chapter 1]()
 
-<br><br><br>
+<br><br><br
+
+References: 
+1. [Oxford languages](https://languages.oup.com/google-dictionary-en/)
+2. [Glossary of R jargon](https://link.springer.com/content/pdf/bbm%3A978-1-4419-1318-0%2F1.pdf)
+3. 
 
 

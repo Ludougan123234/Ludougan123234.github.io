@@ -1,0 +1,68 @@
+---
+title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+output:
+  html_document:
+    css: style.css
+---
+
+# Chapter 3. Inferential statistics
+
+Inferential statistics refer to the type of statistics that allows you to reach beyond your observation and "infer" what the population might think about a phenomenon. Furthermore, inferential statistics allows you to judge whether an observed difference between groups in your data only occurs by chance or can be generalized to a wider population. 
+
+## 3.1 Normality test
+
+To conduct inferential statistics tests, we have to start by checking the <strong>normality</strong> of your data (whether your data is normally distributed, or the distribution of data is <strong> symmetrical and bell-shaped </strong>). If you search online, some might tell you that you could skip this test and assume that your data is normally distributed if your sample size is larger than 30 because of the central limit theorem. However, it is always a good idea to run a normality test to choose the right statistical test, which allows you to obtain more accurate and reliable results. 
+
+There are many normality tests available, but here we will use the <strong>Shapiro-Wilk's test</strong>. The function for Shapiro-Wilk's test is in the `stats` package. Using the same `sat.act` data set, the code and result of Shapiro-Wilk's test of the ACT scores is as follows: 
+
+``` {r class.source = "code1"}
+# load data
+test_score <- psych::sat.act
+#load package
+library(stats) 
+
+# Syntax: shapiro.test(data)  
+# Note that the data should contain only one column of numeric data
+shapiro.test(test_score$ACT)
+```
+
+The function gives us 2 outputs: a W value, and a p-value. We should focus on the p-value. If the p-value is larger than 0.05, we've failed to reject the null hypothesis that the sample is normally distributed. If the p-value is smaller than 0.05, we can reject the null hypothesis that the sample is normally distributed. 
+
+In this case, the p-value is much smaller than 0.05, rejecting the null hypothesis. This means that the sample is <strong>not normally distributed</strong>. 
+
+We could verify this with a distribution plot, using the `ggdensity()` function from the `ggpubr` package. 
+``` {r class.source = "code1"}
+library(ggpubr)
+ggdensity(test_score$ACT)
+```
+
+The distribution of the data looks like a bell-shaped curve, but tilting (skewed) towards the right. Thus, we say that this data is not normally distributed. 
+
+## 3.2 Choosing a statistical test
+
+After determining the normality of the data, we could start our inferential statistical analysis. Below is a flow chart helping you decide which statistical tests to use in different circumstances. However, <strong> please note that this is not the definitive guide to determining the type of statistical tests you can use. The choice of statistical tests should be informed by further research.</strong>
+![stats tests](stats_tests.png)
+(Adapted from [The Statistics Tutor’s Quick Guide to Commonly Used Statistical Tests by Jean Russell](https://www.statstutor.ac.uk/resources/uploaded/tutorsquickguidetostatistics.pdf) and [Statistical tests: which one should you use? by Rebecca Bevans](https://www.scribbr.com/statistics/statistical-tests/))
+
+## 3.3 Corresponding R functions to each statistical tests
+Below is a list of reference of each aforementioned statistical tests and their documentations (since putting all the information in this notebook would obviously make this notebook obnoxiously long).
+
+| Name of the test |  Usage/Documentation/Interpretation  |
+|:---------------------:|:---------------------:|
+| Independent t-test| [See here](http://www.sthda.com/english/wiki/unpaired-two-samples-t-test-in-r)|
+| Wilcoxon rank-sum test/Mann-Whitney test| [See here](http://www.sthda.com/english/wiki/unpaired-two-samples-wilcoxon-test-in-r)|
+| (One-way) ANOVA | [See here](http://www.sthda.com/english/wiki/one-way-anova-test-in-r)|
+| Kruskal-Wallis test| [See here](http://www.sthda.com/english/wiki/kruskal-wallis-test-in-r)|
+| MANOVA | [See here](http://www.sthda.com/english/wiki/manova-test-in-r-multivariate-analysis-of-variance)| | ANOSIM| [See here](https://www.rdocumentation.org/packages/vegan/versions/2.3-5/topics/anosim)| 
+| Paired t-test| [See here](http://www.sthda.com/english/wiki/paired-samples-t-test-in-r) | 
+| Wilcoxon signed-rank test| [See here](http://www.sthda.com/english/wiki/paired-samples-wilcoxon-test-in-r)| 
+| Repeated measures ANOVA| [See here](https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/)| 
+| Friedman test| [See here](https://www.datanovia.com/en/lessons/friedman-test-in-r/) | 
+
+
+
+
+References: <br>
+1. [Normality test in R](http://www.sthda.com/english/wiki/normality-test-in-r) <br>
+2. [The Statistics Tutor’s Quick Guide to Commonly Used Statistical Tests by Jean Russell](https://www.statstutor.ac.uk/resources/uploaded/tutorsquickguidetostatistics.pdf)<br>
+3. [Statistical tests: which one should you use? by Rebecca Bevans](https://www.scribbr.com/statistics/statistical-tests/)<br>
