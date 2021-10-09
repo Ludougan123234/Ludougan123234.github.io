@@ -40,7 +40,7 @@ While it is not mandatory, I'd still recommend getting RStudio because it is muc
 |Arguments| |
 
 ### 0.4 A visual guide to using RStudio
-![A picture showing the user interface of RStudio](R-STD.png)
+![A picture showing the user interface of RStudio](RStudio interface.png)
 <br><br><br>
 
 [Go back to table of contents](https://ludougan123234.githu.io/Index) <br>
