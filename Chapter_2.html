@@ -201,7 +201,7 @@ pre code {
 <p>(Kubiak and Benbow, 2006, as cited in Kotu and Deshpande, 2019)</p>
 <div id="observing-the-data-set-types-of-variables" class="section level2">
 <h2>2.1 Observing the data set &amp; types of variables</h2>
-<p>Before we really enter the analysis, let’s take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the sat.act data set, there are 700 entries). So, to look at the first few rows of the data, use the <code>head()</code> function.</p>
+<p>Before we really enter the analysis, let’s take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the <code>sat.act</code> data set, there are 700 entries). So, to look at the first few rows of the data, use the <code>head()</code> function.</p>
 <pre class="r code1"><code>library(psych)
 library(knitr)
 test_score &lt;- sat.act
@@ -458,8 +458,8 @@ kable(describe(test_score)) #ignore the &quot;kable()&quot; function. It&#39;s j
 </table>
 <p>And there you have the descriptive statistics for your data set!</p>
 </div>
-<div id="deciphering-the-output" class="section level2">
-<h2>2.3 Deciphering the output</h2>
+<div id="getting-to-know-the-outputs" class="section level2">
+<h2>2.3 Getting to know the outputs</h2>
 <p>From this output table, we can see that the function gives us several outputs: <code>vars</code>, <code>n</code>, <code>mean</code>, <code>sd</code>, <code>median</code>, <code>trimmed</code>, <code>mad</code>, <code>min</code>, <code>max</code>, <code>range</code>, <code>skew</code>, <code>kurtosis</code>, and <code>se</code>. Below is a table showing the explanation for each output:</p>
 <table>
 <colgroup>

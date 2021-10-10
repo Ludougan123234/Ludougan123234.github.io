@@ -61,6 +61,8 @@ Below is a list of reference of each aforementioned statistical tests and their 
 | Repeated measures ANOVA| [See here](https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/)| 
 | Friedman test| [See here](https://www.datanovia.com/en/lessons/friedman-test-in-r/) | 
 <br><br><br>
+Again, MLA does not seem to give much guidance on how to format your statistics. For formatting guidelines, either consult your teacher or use APA 7th. 
+<br><br><br>
 [Go back to index](https://ludougan123234.github.io/Index.html) <br>
 [Go to the next chapter](https://ludougan123234.github.io/Chapter_4.html)
 

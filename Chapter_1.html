@@ -171,16 +171,16 @@ pre code {
 
 <div id="before-you-start-to-analyze-your-data" class="section level1">
 <h1>1. Before you start to analyze your data:</h1>
-<div id="setting-up-your-working-directory" class="section level3">
-<h3>1.1 Setting up your working directory</h3>
+<div id="set-up-your-working-directory" class="section level3">
+<h3>1.1 Set up your working directory</h3>
 <p>Working directory refers to the location (file path) on your computer where R can read in or save data. To get your current R working directory, use the <code>getwd()</code> function to do so. To change your working directory, use the <code>setwd()</code> function to do so. For example:</p>
 <pre class="r code1"><code>getwd() # get your current working directory
 setwd(&quot;/Users/johnny/Desktop&quot;) # in the parenthesis, write down your file path, with double quotation marks surrounding it</code></pre>
 <p>If you are unsure as to how to get the file path of your folder, for windows users, click <a href="https://www.laptopmag.com/articles/show-full-folder-path-file-explorer">here</a>. For mac users, click <a href="https://macpaw.com/how-to/get-file-path-mac">here</a>.</p>
 <p>In the rest of the notebook, we’ll assume that your survey data is placed in your working directory and not any other places.</p>
 </div>
-<div id="installing-r-packages" class="section level3">
-<h3>1.2 Installing R packages</h3>
+<div id="install-r-packages" class="section level3">
+<h3>1.2 Install R packages</h3>
 <p>R is a very powerful statistical programming language, since it has a lot of packages that allow one to do complex statistical computations with just one command/line of code. Since in your analysis you’ll be very likely to conduct your analysis/visualization of data using packages, here I’ll show you how to install and use packages in R:</p>
 <p>To install a package in R, use the <code>install.package()</code> function. The syntax of this function is shown below:</p>
 <pre class="r code1"><code>install.packages(&quot;package_name&quot;)</code></pre>
@@ -189,8 +189,8 @@ setwd(&quot;/Users/johnny/Desktop&quot;) # in the parenthesis, write down your f
 <pre class="r code1"><code>library(package_name)</code></pre>
 <p>This time, you do not need the quotation marks to enclose the package name. You need to do this every time you start/restart a new R session.</p>
 </div>
-<div id="reading-data-into-the-r-environment" class="section level3">
-<h3>1.3 Reading data into the R environment</h3>
+<div id="read-data-into-the-r-environment" class="section level3">
+<h3>1.3 Read data into the R environment</h3>
 <p>To read your survey data into R, you will use the following functions, depending on the file type of your survey data. Normally, if you’re using Google forms, the file will be in .xlsx format or .csv format. To read .xlsx files, use <code>read.xlsx()</code> function from the <code>xlsx</code> package. To read .csv files, use <code>read.csv()</code> function. The syntax is demonstrated as follows:</p>
 <pre class="r code1"><code>install.packages(&quot;xlsx&quot;) #install xlsx package
 library(xlsx) # activate (&quot;call&quot;) xlsx package 
@@ -203,14 +203,14 @@ read.xlsx(&quot;your_data.xlsx&quot;, sheetName = &quot;a_specific_sheet_in_your
 # if your file is a .csv file:
 read.csv(&quot;your_data.csv&quot;)</code></pre>
 </div>
-<div id="storing-data-as-r-variables" class="section level3">
-<h3>1.4 Storing data as R variables</h3>
-<p>Using read functions to read in data is not enough. You’ll need a <strong>variable</strong> to store your data. To assign data to a variable, use <code>&lt;-</code> to do so. See the following example:</p>
+<div id="store-data-as-r-variables" class="section level3">
+<h3>1.4 Store data as R variables</h3>
+<p>Using read functions to read in data is not enough. You’ll need a <strong>variable</strong> to store and operate your data. To assign data to a variable, use <code>&lt;-</code> to do so. See the following example:</p>
 <pre class="r code1"><code># Syntax: variable_name &lt;- data
 
 # Example: 
-test_score &lt;- sat.act</code></pre>
-<p>In the above example, I took the data set with the name <code>sat.act</code> from the <code>psych</code> package and stored it onto the <code>test_score</code> variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you’ll be able to have a good idea of what variables you would like to work with when you need them.</p>
+test_score &lt;- psych::sat.act</code></pre>
+<p>In the example above, I took the data set with the name <code>sat.act</code> from the <code>psych</code> package and stored it onto the <code>test_score</code> variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you’ll be able to have a good idea of what variables you would like to work with when you need them.</p>
 <p>Next we’ll move on to describing data with R.</p>
 <p><a href="https://ludougan123234.github.io/Chapter_2.html">Go on to the next chapter</a> <br> <a href="https://ludougan123234.github.io/Index.html">Go back to Index</a></p>
 </div>

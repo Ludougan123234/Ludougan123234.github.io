@@ -16,7 +16,7 @@ Descriptive statistics, as its name suggests, is the kind of statistics that des
 (Kubiak and Benbow, 2006, as cited in Kotu and Deshpande, 2019)
  
 ## 2.1 Observing the data set & types of variables
-Before we really enter the analysis, let's take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the sat.act data set, there are 700 entries). So, to look at the first few rows of the data, use the `head()` function. 
+Before we really enter the analysis, let's take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the `sat.act` data set, there are 700 entries). So, to look at the first few rows of the data, use the `head()` function. 
 ``` {r class.source = "code1"}
 library(psych)
 library(knitr)
@@ -53,7 +53,7 @@ kable(describe(test_score)) #ignore the "kable()" function. It's just here to be
 
 And there you have the descriptive statistics for your data set!
 
-## 2.3 Deciphering the output 
+## 2.3 Getting to know the outputs 
 From this output table, we can see that the function gives us several outputs: `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, and `se`. Below is a table showing the explanation for each output: 
 
 |Output|Description|

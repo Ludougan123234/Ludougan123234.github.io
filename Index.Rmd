@@ -14,7 +14,7 @@ Hello there! This is a notebook where you'll be introduced to analyzing quantita
 [Chapter 3: Inferential statistical analysis](https://ludougan123234.github.io/Chapter_3.html) <br><br>
 [Chapter 4: Correlation and regression](https://ludougan123234.github.io/Chapter_4.html) <br><br>
 [Chapter 5: Data visualization](https://ludougan123234.github.io/Chapter_5.html) <br><br>
-[Chapter 6: Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)](https://ludougan123234.github.io/Chapter_6.html) <br><br>
+[Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)](https://ludougan123234.github.io/Chapter_6.html) <br><br>
 </strong> 
 
 ``` {text class.source = "code2", eval = FALSE}
