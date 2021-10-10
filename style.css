@@ -2,7 +2,7 @@
   font-family: Monospace;
   font-size: 10pt;
   color: black;
-  background-color: #d9f1ff;
+  background-color: #dfe6eb;
 }
 
 .code2{
@@ -10,4 +10,10 @@
   font-size: 10pt;
   color: #FF0000;
   background-color: #FEFEBE;
+}
+
+.output{
+  font-family: Monospace;
+  font-size: 10pt;
+  background-color: #e4e9e2;
 }

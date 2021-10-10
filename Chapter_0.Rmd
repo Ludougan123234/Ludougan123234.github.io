@@ -29,7 +29,7 @@ While it is not mandatory, I'd still recommend getting RStudio because it is muc
 <li> <b>Write your code in a script</b>: Although R allows you to write and execute code directly in the console, the code you type in the console will not be saved. This means that your code and execution results will be cleared if you do not save your code in a script. So, you should always write your code in a dedicated R script and execute them using `cmd+enter` on mac or `ctrl + enter` on windows computers. 
 </ul>
 
-### 0.3 Glossary of jargon in R: 
+### 0.3 Glossary of R jargons: 
 
 | Terminology/Jargon| Definition/Description|
 |:------:|:------:|

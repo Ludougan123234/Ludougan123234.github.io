@@ -4,7 +4,7 @@ output:
   html_document:
     css: style.css
 ---
-# 2. Descriptive statistics 
+# 2. Descriptive statistics and variable types
 Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. It would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main facets of a data set: 
 
 | Characteristics| Measurement technique |
@@ -15,7 +15,7 @@ Descriptive statistics, as its name suggests, is the kind of statistics that des
 
 (Kubiak and Benbow, 2006, as cited in Kotu and Deshpande, 2019)
  
-## 2.1 Observing the data set
+## 2.1 Observing the data set & types of variables
 Before we really enter the analysis, let's take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the sat.act data set, there are 700 entries). So, to look at the first few rows of the data, use the `head()` function. 
 ``` {r class.source = "code1"}
 library(psych)
@@ -34,9 +34,15 @@ We can see that the data consists of 700 rows (700 entries) and 6 variables: gen
 |SATV| SAT Verbal scores ranging from 200 - 800|
 |SATQ| SAT Quantitative scores ranging from 200 - 800| 
 
-## 2.2 Descriptive statistics analysis and terminologies
+From the aforementioned variables, researchers categorize them into several types of variables: <br>
+![Variables](Variables.png)
+For example, gender would be considered a categorical, nominal variable, while test scores would be considered quantitative, discrete variables (because they do not involve decimal numbers).
+
+*:One thing to note that is, for those who will be doing research with Likert type questions (which is a type of ordinal data), you can analyze your data using methods designed for continuous variables since some scholars have argued that if you take two or more ordinal variables and add them together, it could be an approximate of a continuous variable (Norman, 2010). 
+
+## 2.2 Descriptive statistics analysis
 To do a descriptive statistics analysis, it is as simple as using only 1 line of code, using the `describe()` function from the `psych` package. See the following example: 
-``` {r class.source = "code1"}
+``` {r class.source = "code1", class.output = "output", warning = FALSE}
 # function to use: describe() 
 # Syntax: describe(data)
 
@@ -62,7 +68,7 @@ From this output table, we can see that the function gives us several outputs: `
 |min| The minimum value in your data set |
 |max| The maximum value in your data set|
 |range| = max - min|
-|skew| Stands for "skewness" <br>If your data is <strong>positively skewed</strong>, there is more data on the right tail. <br>If your data is <strong>negatively skewed</strong>, there is more data on the left tail of the distribution. ![Skewness](skew.jpeg)|
+|skew| Stands for "skewness" <br>If your data is <strong>positively skewed</strong>, the mass of the distribution is concentrated on the left of the figure <br>If your data is <strong>negatively skewed</strong>, the mass of the distribution is concentrated on the right of the figure. ![Skewness](skew.jpeg)|
 |kurtosis| Kurtosis refers to the "peakedness" of the data distribution. If your data has a positive kurtosis (leptokurtic kurtosis), the distribution of your data would look more "pointed" or "peaked", while a negative kurtosis (platykurtic kurtosis) means that the distribution of the data looks "flat". See the picture below: <br> ![kurtosis](kurt.jpeg)|
 |se| Stands for "standard error." SE gives the accuracy of a sample mean by measuring the sample-to-sample variability of the sample mean. SE is calculated by dividing the SD by the square root of sample numbers (n) (i.e., $\sigma/\sqrt{n}$). <br> For example, see SATV SD = 112.9, then the SE of SATV = $112.9/\sqrt{700}\approx{4.27}$|
 
@@ -72,15 +78,15 @@ From this output table, we can see that the function gives us several outputs: `
 
 One common problem when doing descriptive statistics is that you want to know the descriptive statistics for a specific group (e.g., gender, age, education, etc.). To do so, you'll just have to add an extra argument in the `describeBy()` function. In the following example, I will use "gender" as the grouping variable and do a descriptive analysis.
 
-``` {r class.source = "code1"}
+``` {r class.source = "code1", class.output = "output", warning = FALSE}
 # Syntax: describe(data ~ your_grouping variable)
 # Note that the grouping variable has to be in the same variable as your data (i.e., in the same data frame)
 describe(test_score ~ gender)
 ```
 
 Another way to do this is to use the `describeBy()`function in the `psych` package. See the following example:
-``` {r class.source = "code1", eval = FALSE}
-# Syntax: describeBy(data, data$column_name)
+``` {r class.source = "code1", class.output = "output", warning = FALSE, eval = FALSE}
+# Syntax: describeBy(data, data$column_name), the dollar sign helps you select a specific column from the data set
 describeBy(test_score, test_score$gender)
 ```
 This line of code gives the exact same output as the previous one. 
@@ -107,4 +113,5 @@ References: <br>
 2. [Picture showing the standard deviation - Wikipedia](https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FStandard_deviation&psig=AOvVaw21KvAZMmHVNv89AJzW9ABY&ust=1633834713208000&source=images&cd=vfe&ved=0CAwQjhxqFwoTCJibx9-qvPMCFQAAAAAdAAAAABAD)<br>
 3. [Understanding Parametric Tests, Skewness, and Kurtosis by Robert Keim](https://www.allaboutcircuits.com/technical-articles/understanding-the-normal-distribution-parametric-tests-skewness-and-kurtosis/)<br>
 4. Kissell, R., & Poserina, J. (2017). Chapter 4 - Advanced Math and Statistics. In R. Kissell & J. Poserina (Eds.), Optimal Sports Math, Statistics, and Fantasy (pp. 103-135). Academic Press. https://doi.org/https://doi.org/10.1016/B978-0-12-805163-4.00004-9 <br>
-5. Kotu, V., & Deshpande, B. (2019). Chapter 3 - Data Exploration. In V. Kotu & B. Deshpande (Eds.), Data Science (Second Edition) (pp. 39-64). Morgan Kaufmann. https://doi.org/https://doi.org/10.1016/B978-0-12-814761-0.00003-4 
+5. Kotu, V., & Deshpande, B. (2019). Chapter 3 - Data Exploration. In V. Kotu & B. Deshpande (Eds.), Data Science (Second Edition) (pp. 39-64). Morgan Kaufmann. https://doi.org/https://doi.org/10.1016/B978-0-12-814761-0.00003-4 <br>
+6. Norman, G. (2010). Likert scales, levels of measurement and the “laws” of statistics. Advances in Health Sciences Education, 15(5), 625-632. https://doi.org/10.1007/s10459-010-9222-y 
