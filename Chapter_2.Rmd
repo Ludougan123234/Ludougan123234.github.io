@@ -101,7 +101,7 @@ This line of code gives the exact same output as the previous one.
 
 That wraps up our discussion on descriptive statistics. You can choose to: <br>
 [Go back to the main page](https://ludougan123234.github.io/Index.html) or <br>
-[Go to the next chapter]()
+[Go to the next chapter](https://ludougan123234.github.io/Chapter_3.html)
 
 
 

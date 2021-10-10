@@ -36,21 +36,19 @@ While it is not mandatory, I'd still recommend getting RStudio because it is muc
 |String| A sequence of characters or numbers enclosed with double quotation marks|
 |Data-frame| A table-like or two dimensional array with data stored in it| 
 |Data set (dataset) | a collection of related sets of information that is composed of separate elements but can be manipulated as a unit by a computer|
-|Function| |
-|Arguments| |
+|Arguments| The options that control what the commands do and the argumentsthat control what functions do.|
 
 ### 0.4 A visual guide to using RStudio
 ![A picture showing the user interface of RStudio](RStudio interface.png)
 <br><br><br>
 
-[Go back to table of contents](https://ludougan123234.githu.io/Index) <br>
-[Go to chapter 1]()
+[Go back to index](https://ludougan123234.githu.io/Index.html) <br>
+[Go to chapter 1](https://ludougan123234.github.io/Chapter_1.html)
 
-<br><br><br
+<br><br>
 
 References: 
 1. [Oxford languages](https://languages.oup.com/google-dictionary-en/)
 2. [Glossary of R jargon](https://link.springer.com/content/pdf/bbm%3A978-1-4419-1318-0%2F1.pdf)
-3. 
 
 

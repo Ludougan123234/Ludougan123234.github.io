@@ -19,7 +19,7 @@ test_score <- test_score[, c(4:6)]
 # load library
 library(PerformanceAnalytics)
 
-# Syntax: cor.test(data)
+# Syntax: chart.Correlation(data)
 chart.Correlation(test_score)
 ```
 
@@ -47,3 +47,7 @@ There are many other plot types in R. You can further explore the type of visual
 1. [The R graph gallery](https://www.r-graph-gallery.com/index.html)<br>
 2. [Data visualization with R](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)<br>
 3. [Data visualization with R (eBook)](https://rkabacoff.github.io/datavis/)
+
+<br><br><br>
+[Go back to index](https://ludougan123234.github.io/Index.html) <br>
+[Go to the next chapter](https://ludougan123234.github.io/Chapter_6.html)

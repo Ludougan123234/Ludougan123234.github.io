@@ -16,7 +16,7 @@ If you would like to investigate the correlation between <strong>2 continuous va
 ### 4.1.1 Pearson product-moment correlation and p-value
 One of the most commonly used correlation analyses is Pearson product-moment correlation. This analysis assumes that your variables have <strong>a linear relationship and are normally distributed</strong>. Although from the previous section we know that the `ACT`, `SATV`, and `SATQ` columns in the `sat.act` data set is not normally distributed, I will still demonstrate Pearson's correlation using this data set for convenience. 
 
-The function for Pearson's correlation in R is `cor.test()`. Let's say, we want to investigate whether there is any relationship between SAT Verbal scores and SAT Quantitative scores. See the following demonstration: 
+The function for Pearson's correlation in R is `cor.test()`. Let's say, we want to investigate the correlation between SAT Verbal scores and SAT Quantitative scores. See the following demonstration: 
 
 ``` {r class.source = "code1", class.output = "output"}
 # load data set
@@ -33,11 +33,11 @@ We focus on 2 outputs: the `cor` and the `p-value`. In this output, we see that 
 ![Correlation](Cor.png)
 [Source of image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fbusinessq-software.com%2F2019%2F02%2F21%2Fscatter_plot%2F&psig=AOvVaw0e_bBP9U_CUhnOiVehwdB8&ust=1633938008097000&source=images&cd=vfe&ved=0CAwQjhxqFwoTCND9n8arv_MCFQAAAAAdAAAAABAd)
 
-Aside from the correlation coefficient, another output to take note of is the <strong>p-value</strong>. In hypothesis testing, there are two types of hypotheses: Null hypothesis ($H_0$) and Alternative hypothesis ($H_1$). Null hypothesis states that a parameter is equal to a hypothesized value (in Pearson correlation, this value is 0). Alternative hypothesis, on the other hand, states that a parameter is different from a hypothesized value and is often what you hope to prove true. If p-value > 0.05, this means that we've failed to reject $H_0$ and is considered statistically insignificant. If p-value < 0.05, this means that we've rejected $H_0$ successfully and that we have enough confidence in accepting $H_1$. In this case, we would say that the result has "statistical significance".
+Aside from the correlation coefficient, another output to take note of is the <strong>p-value</strong>. In hypothesis testing, there are two types of hypotheses: Null hypothesis ($H_0$) and Alternative hypothesis ($H_1$). Null hypothesis states that a parameter is equal to a hypothesized value (in Pearson correlation, this value is 0). Alternative hypothesis, on the other hand, states that a parameter is different from a hypothesized value and is often what you hope to prove true. If p-value > 0.05, this means that we've failed to reject $H_0$, and your result will bes considered statistically insignificant. If p-value < 0.05, this means that we've rejected $H_0$ successfully and that we have enough confidence in accepting $H_1$. In this case, we would say that the result has "statistical significance".
 
-The threshold of 0.05 might come as arbitrary for some. In more rigorous cases, the threshold might be much smaller than 0.05. However, in the field of psychometrics and social science, 0.05 seems to be good enough for most cases, and thus 0.05 has become the de facto p-value threshold. 
+In more rigorous cases, the threshold might be much smaller than 0.05. However, in the field of applied linguistics and social science, 0.05 seems to be good enough for most cases, and thus 0.05 has become the de facto p-value threshold. 
 
-Combining the results, we say that there is a <strong>statistically significant, positive correlation</strong> between SATV and SATQ scores. 
+Combining the results, we say that there is a <strong>statistically significant, positive correlation</strong> between SATV and SATQ scores. This means that those who score higher on SATV tend to score higher on SATQ.
 
 ### 4.1.2 Spearman Correlation
 Spearman correlation is a different version of Pearson correlation in that it <strong>does not assume normality in your data</strong>. Other than that, Spearman correlation does not seem to differ largely from Pearson correlation. The function for Spearman correlation test is the same as Pearson correlation test, with only one additional argument to add in the `cor.test` function.
@@ -63,7 +63,7 @@ The function gives us 3 outputs: `correlation matrix`, `sample size` and `probab
 
 
 ## 4.2 Multiple linear regression
-Previously, we've talked about correlation between 2 variables. Now we will move on to talking about multiple linear regression, which is a technique to estimate the relationship between two or more independent variable (predictor) and one dependent variable. It might be simpler to understand this in mathematical equations: 
+Previously, we've talked about correlation between 2 variables. Now we will move on to multiple linear regression, which is a technique to estimate the relationship between two or more independent variable (predictor) and one dependent variable. It might be simpler to understand this in mathematical equations: 
 
 $y = \beta_0 + \beta_1X_1 + ... + \beta_nX_n + \epsilon$
 <br><ul>
@@ -87,9 +87,9 @@ summary(score_lm)
 ```
 
 From the `residuals` section, we can see that the minimum and maximum are around -17 and 18, with the median being 0.08. This is probably a good sign that the model fits the assumption of homoscedacity. <br>
-We then focus on the `coefficients` section of the output, where we can construct the mathematical equation that describes the relationship between ACT, SATV, and SATQ scores. First we look at the `(Intercept)`. This is the y-intercept of the formula. Then, we look at the `Estimate` of SATQ and SATV. 0.016142 and 0.013284 are the regression coefficient of SATQ and SATV, respectively. So, from this output, we can construct that: <br> $ACT \space score = 10.57 + (0.02 * SATQ) + (0.01 * SATV)$ 
+We then focus on the `coefficients` section of the output, where we construct the mathematical equation that describes the relationship between ACT, SATV, and SATQ scores. First we look at the `(Intercept)`. This is the y-intercept of the formula. Then, we look at the `Estimate` of SATQ and SATV. `0.016142` and `0.013284` are the regression coefficient of SATQ and SATV, respectively. So, from this output, we can construct that: <br> $ACT \space score = 10.57 + (0.02 * SATQ) + (0.01 * SATV)$ 
 
-Since that the p-values (Pr(>|t|)) are all less than 0.05, we can say that SATQ and SATV are both statistically significant indicators of ACT scores. 
+Since that the p-values (`Pr(>|t|)`) are all less than 0.05, we can say that SATQ and SATV are both statistically significant indicators of ACT scores. 
 
 And that wraps up our discussion on correlation and linear regression. You can choose to <br> [Go back to the main page](https://ludougan123234.github.io/Index.html) or <br> [Go to the next chapter](https://ludougan123234.github.io/Chapter_5.html)
 

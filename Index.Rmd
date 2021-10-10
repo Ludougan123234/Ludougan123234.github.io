@@ -5,9 +5,7 @@ output:
     css: style.css
 ---
 
-Hello there! This is a notebook (which you will probably be viewing in web format) where you'll be introduced to analyzing quantitative data with the R programming language. In this notebook, I will only help you learn the R commands to help you with your data analysis. No prior knowledge in coding is needed! I'll try to explain things in the simplest terms. However, if you still find something confusing, or even find erroneous information on this website/notebook, please email me at: randy19981223@gmail.com and ask for clarifications. Let's start learning!
-
-In this notebook, I will explain some statistics concepts and do an exemplary data analysis using the SAT and ACT data set provided by the `psych` package. The analysis will cover both descriptive and inferential statistics. First, I'll start by introducing some basic concepts that might be helpful in your analysis process. Then I'll move on to the
+Hello there! This is a notebook where you'll be introduced to analyzing quantitative data with the R programming language. In this notebook, I will only help you learn the R commands to help you with your data analysis. No prior knowledge in coding is needed! I'll try to explain things in the simpler terms. However, if you still find something confusing, or even find erroneous information on this website/notebook, please email me at: randy19981223@gmail.com and ask for clarifications. Let's start learning!
 
 <strong>
 [Chapter 0: Getting things started](https://ludougan123234.github.io/Chapter_0.html) <br><br>
@@ -16,7 +14,7 @@ In this notebook, I will explain some statistics concepts and do an exemplary da
 [Chapter 3: Inferential statistical analysis](https://ludougan123234.github.io/Chapter_3.html) <br><br>
 [Chapter 4: Correlation and regression](https://ludougan123234.github.io/Chapter_4.html) <br><br>
 [Chapter 5: Data visualization](https://ludougan123234.github.io/Chapter_5.html) <br><br>
-[Chapter 6: Item analysis for questionnaires](https://ludougan123234.github.io/Chapter_6.html) <br><br>
+[Chapter 6: Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)](https://ludougan123234.github.io/Chapter_6.html) <br><br>
 </strong> 
 
 ``` {text class.source = "code2", eval = FALSE}

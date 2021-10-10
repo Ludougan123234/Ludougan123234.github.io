@@ -60,7 +60,9 @@ Below is a list of reference of each aforementioned statistical tests and their 
 | Wilcoxon signed-rank test| [See here](http://www.sthda.com/english/wiki/paired-samples-wilcoxon-test-in-r)| 
 | Repeated measures ANOVA| [See here](https://www.datanovia.com/en/lessons/repeated-measures-anova-in-r/)| 
 | Friedman test| [See here](https://www.datanovia.com/en/lessons/friedman-test-in-r/) | 
-
+<br><br><br>
+[Go back to index](https://ludougan123234.github.io/Index.html) <br>
+[Go to the next chapter](https://ludougan123234.github.io/Chapter_4.html)
 
 References: <br>
 1. [Normality test in R](http://www.sthda.com/english/wiki/normality-test-in-r) <br>

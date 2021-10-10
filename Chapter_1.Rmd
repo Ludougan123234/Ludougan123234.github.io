@@ -59,19 +59,6 @@ In the above example, I took the data set with the name `sat.act` from the `psyc
 
 Next we'll move on to describing data with R. 
 
-[Go on to the next chapter]() <br>
-[Go back to main page]()
-# 3. Inferential statistics
-Some other inferential statistics function in R that you might find useful
-
-| Function    | Purpose     |Syntax       |Package | documentation |
-| :---------: | :---------: | :---------: |:----:  |:---------: |
-| Header      | Title       | Title       |base    |[Click me](https://www.google.com)       |
-| Paragraph   | Text        | Title       |base    |Title       |
-
-
-# 4. Ending remarks and a brief cheatsheet
-In this notebook, we've introduced a lot 
-
-# 5. References
+[Go on to the next chapter](https://ludougan123234.github.io/Chapter_2.html) <br>
+[Go back to Index](https://ludougan123234.github.io/Index.html)
 
