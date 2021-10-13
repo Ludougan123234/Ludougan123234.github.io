@@ -1,5 +1,5 @@
 ---
-title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css

@@ -1,5 +1,5 @@
 ---
-title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
@@ -7,7 +7,7 @@ output:
 
 # Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)
 
-If you are conducting a questionnaire research and would like to go farther with your analysis, you could conduct, but not limited to, the following data analysis methods. In this section, I will not demonstrate how to do these analysis in R, but give you to some resources that you could reference to when you want to do the analysis mentioned below.
+If you are conducting a questionnaire research and would like to go farther with item analysis, you could conduct, but not limited to, the following data analysis methods. In this section, I will not demonstrate how to do these analysis in R, but give you to some resources that you could reference to when you want to do the analysis mentioned below.
 
 ## Chapter 6.1 - Internal consistency (Cronbach's $\alpha$)
 Internal consistency tests whether if your questionnaire is measuring the same thing or not and is considered an index that measures the reliability of your questionnaire. To conduct an internal consistency test, use the `alpha()` function in the `psych` package. 

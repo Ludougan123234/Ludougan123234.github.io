@@ -1,5 +1,5 @@
 ---
-title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
@@ -51,7 +51,7 @@ library(knitr)
 kable(describe(test_score)) #ignore the "kable()" function. It's just here to beautify the output in the website
 ```
 
-And there you have the descriptive statistics for your data set!
+And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean more, since `gender` and `education` are both categorical variables described in numeric format.. 
 
 ## 2.3 Getting to know the outputs 
 From this output table, we can see that the function gives us several outputs: `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, and `se`. Below is a table showing the explanation for each output: 

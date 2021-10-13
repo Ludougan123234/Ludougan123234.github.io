@@ -1,15 +1,56 @@
 ---
-title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
 ---
 
-# Chapter 5 - Data visualization - using correlation plots as an example
+# Chapter 5 - Data visualization - pie charts, line graphs, and correlation plots
 Sometimes, it is not enough to just report your findings with numeric or textual descriptions.  You'll need to make your discoveries more "palatable", or, more easily observed by general public. Visualizing your data and findings is a good way to do so. In this chapter, I will demonstrate how to use R packages to visualize your findings. 
 
+## 5.1 Pie charts
+You could construct a pie chart with R using the `pie()` function. Since this function exists in the R code base, you do not need to install any packages for this. To make R give you a pie chart, you must have 2 things: the slices and the labels. See the following example:
+``` {r class.source = "code1", class.output = "output", message = FALSE}
+# First, construct a vector containing your data (in counts)
+slice <- c(247, 453)
 
-## 5.1 Correlation plot with `PerformanceAnalytics` package
+# Secondly, construct a vector containing the labels (remember to surround them with quotation marks )
+label <- c("Male", "Female")
+
+# Then, use pie() to construct your pie chart
+pie(slice, label = label, main="Gender")
+```
+
+If you'd like to add percentage to the pie chart, just divide the value of slices by the total value of all slices and multiply by 100. Then, append the values to the labels. See the following example:
+``` {r class.source = "code1", class.output = "output", message = FALSE}
+# First, construct a vector containing your data (in counts)
+slice <- c(247, 453)
+
+# Secondly, construct a vector containing the labels (remember to surround them with quotation marks)
+label <- c("Male ", "Female ")
+
+# Next, calculate the percentages for each category and append them to the labels using the paste() function
+percentage <- round(slice/sum(slice) * 100) 
+label <- paste(label, percentage, "%", sep = "")
+
+# Then, use pie() to construct your pie chart
+pie(slice, label = label, main="Gender")
+```
+
+You could further customize this pie chart. Search the internet for more guidance on how to customize your pie chart. 
+
+## 5.2 Line graph
+If you'd like to show something that changes over time, line graph is a good way to visualize such data/trend. You can use the `plot()` function to make a line graph in R. Again, you don't have install any packages for this. See the following example: 
+``` {r class.source = "code1", class.output = "output", message = FALSE}
+# First, I create a random data set. You should substitute this line with your data when doing your analysis
+data <- c(1,4,7,10,14,30,22,19,14,10,4,2)
+
+# Then, use the plot() function to generate a line graph. You can add xlab and ylab arguments to specify labels
+plot(data, type = "o", xlab = "Index", ylab = "Data")
+```
+
+
+## 5.3 Correlation plot with `PerformanceAnalytics` package
 `PerformanceAnalytics` package offers a function that allows you to produce correlation plot. See the below example: 
 ``` {r class.source = "code1", class.output = "output", message = FALSE}
 # load data set
@@ -25,7 +66,7 @@ chart.Correlation(test_score)
 
 As you can see, the plot looks like a correlation matrix. The lower diagonal shows the scatter plot of your data and the regression line. The diagonal of the plot shows you the distribution of data. The upper diagonal shows you the correlation coefficient with p-value markings. 
 
-## 5.2 Correlation plot with `ggally` and `ggplot2` package
+## 5.4 Correlation plot with `ggally` and `ggplot2` package
 `GGally` package offers a function that allows you to produce correlation plots and also allows grouping. See the below example: 
 ``` {r class.source = "code1", class.output = "output", message = FALSE, warning = FALSE}
 # load library and data set
@@ -44,7 +85,7 @@ ggpairs(test_score, columns = 4:6, ggplot2::aes(colour = gender))
 
 
 There are many other plot types in R. You can further explore the type of visualization you want to use in your research. Here are a few resources that you might find useful when learning how to visualize data with R: <br>
-1. [The R graph gallery](https://www.r-graph-gallery.com/index.html)<br>
+1. [The R graph gallery](https://www.r-graph-gallery.com/index.html) - This website showcases various beautiful R plots constructed with `ggplot` package. Also, it gives you the code to replicate the <br>
 2. [Data visualization with R](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)<br>
 3. [Data visualization with R (eBook)](https://rkabacoff.github.io/datavis/)
 
