@@ -3,6 +3,7 @@ title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
+    toc: yes
 ---
 
 # Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)

@@ -3,10 +3,11 @@ title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
+    toc: yes
 ---
 # Chapter 0. Getting things started
 
-# 0.0 Recommended references for R language
+### 0.0 Recommended references for R language
 One of the advantages of R is that it has an incredibly supportive community. Its affiliating packages are (mostly) well documented, and there are a lot of quality learning resources online. Here are some sources of information that you might consider useful when learning R: 
 <ul>
 <li><b>[R Documentations](https://www.rdocumentation.org/):</b> Not sure about how to use a function? R Documentations are the best way to get information about a function. </li> 

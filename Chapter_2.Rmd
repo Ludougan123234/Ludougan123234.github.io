@@ -3,6 +3,7 @@ title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
+    toc: yes
 ---
 # 2. Descriptive statistics and variable types
 Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. It would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main facets of a data set: 
