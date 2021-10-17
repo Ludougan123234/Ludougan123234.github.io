@@ -28,5 +28,4 @@ In R, the tool that you will be using for SEMs is called `lavaan`. For more info
 
 
 
-
 [Go back to index](https://ludougan123234.github.io/Index.html)

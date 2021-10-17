@@ -6,7 +6,7 @@ output:
     toc: yes
 ---
 # 2. Descriptive statistics and variable types
-Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. It would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main facets of a data set: 
+Descriptive statistics, as its name suggests, is the kind of statistics that describes your data. Obviously, it would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main aspects of a data set: 
 
 | Characteristics| Measurement technique |
 | :----: | :----:| 
@@ -17,11 +17,13 @@ Descriptive statistics, as its name suggests, is the kind of statistics that des
 (Kubiak and Benbow, 2006, as cited in Kotu and Deshpande, 2019)
  
 ## 2.1 Observing the data set & types of variables
-Before we really enter the analysis, let's take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the `sat.act` data set, there are 700 entries). So, to look at the first few rows of the data, use the `head()` function. 
+Before we really enter the analysis, let's take a look at the data that we will be using in this demonstration. Normally, it would be hard to look through the entire data set since there are so many entries in one data set (in the `sat.act` data set, there are 700 entries). To look at the first few rows of your data, use the `head()` function. 
 ``` {r class.source = "code1"}
 library(psych)
 library(knitr)
 test_score <- sat.act
+
+# Syntax: head(data_set)
 kable(head(test_score)) # ignore the "kable()" function. It's just here to beautify the output in the website
 ```
 We can see that the data consists of 700 rows (700 entries) and 6 variables: gender, education, age, ACT, SATV (SAT Verbal score), and SATQ (SAT Quantitative score). Here I'll use a table to describe the variables contained in this data set: 
@@ -35,14 +37,14 @@ We can see that the data consists of 700 rows (700 entries) and 6 variables: gen
 |SATV| SAT Verbal scores ranging from 200 - 800|
 |SATQ| SAT Quantitative scores ranging from 200 - 800| 
 
-From the aforementioned variables, researchers categorize them into several types of variables: <br>
+There are ways to categorize these variables to choose the right statstical tests/methdos of analysis for the variables. See the following chart to understand different types of variables:
 ![Variables](Variables.png)
 For example, gender would be considered a categorical, nominal variable, while test scores would be considered quantitative, discrete variables (because they do not involve decimal numbers).
 
-*:One thing to note that is, for those who will be doing research with Likert type questions (which is a type of ordinal data), you can analyze your data using methods designed for continuous variables since some scholars have argued that if you take two or more ordinal variables and add them together, it could be an approximate of a continuous variable (Norman, 2010). 
+*:One thing to note that is, for those who will be doing research with Likert type questions (which is a type of ordinal data), you can analyze your data using methods designed for continuous variables since scholars have argued that if you take two or more ordinal variables and add them together, it could be an approximate of a continuous variable (Norman, 2010). 
 
 ## 2.2 Descriptive statistics analysis
-To do a descriptive statistics analysis, it is as simple as using only 1 line of code, using the `describe()` function from the `psych` package. See the following example: 
+Doing a descriptive statistics analysis is as simple as using only 1 function - the `describe()` function from the `psych` package. See the following example: 
 ``` {r class.source = "code1", class.output = "output", warning = FALSE}
 # function to use: describe() 
 # Syntax: describe(data)
@@ -52,7 +54,7 @@ library(knitr)
 kable(describe(test_score)) #ignore the "kable()" function. It's just here to beautify the output in the website
 ```
 
-And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean more, since `gender` and `education` are both categorical variables described in numeric format.. 
+And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean more, since `gender` and `education` are both categorical variables described in numeric format. 
 
 ## 2.3 Getting to know the outputs 
 From this output table, we can see that the function gives us several outputs: `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, and `se`. Below is a table showing the explanation for each output: 
@@ -96,12 +98,12 @@ This line of code gives the exact same output as the previous one.
 <ul>
 <li><strong>What to report</strong>: Something to take note of while reporting the descriptive statistics of your data is that: <strong>you do not need to report everything.</strong> One standard practice when reporting descriptive statistics is to report 1 measurement of central tendency (mean) and 1 measurement of variability (standard deviation). </li>
 
-<li><strong>Formatting your report</strong>: The MLA 8th edition does not seem to give any guidance on reporting statistical results. Thus, you might want to consider using APA to report your results. For more guidance on reporting statistical results, see [this page](https://www.scribbr.com/apa-style/numbers-and-statistics/)</li>
+<li><strong>Formatting your report</strong>: The MLA 8th edition does not seem to give any guidance on reporting results from statistical analysis. Thus, you might want to consider using APA to report your results. For more guidance on reporting statistical results, see [this page](https://www.scribbr.com/apa-style/numbers-and-statistics/)</li>
 </ul>
 
 
 That wraps up our discussion on descriptive statistics. You can choose to: <br>
-[Go back to the main page](https://ludougan123234.github.io/Index.html) or <br>
+[Go back to index](https://ludougan123234.github.io/Index.html) or <br>
 [Go to the next chapter](https://ludougan123234.github.io/Chapter_3.html)
 
 

@@ -57,7 +57,7 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="data:text/css,%2Ecode1%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20black%3B%0Abackground%2Dcolor%3A%20%23dfe6eb%3B%0A%7D%0A%2Ecode2%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20%23FF0000%3B%0Abackground%2Dcolor%3A%20%23FEFEBE%3B%0A%7D%0A%2Eoutput%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23e4e9e2%3B%0A%7D" type="text/css" />
+<link rel="stylesheet" href="data:text/css,%2Ecode1%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20black%3B%0Abackground%2Dcolor%3A%20%23dfe6eb%3B%0A%7D%0A%2Ecode2%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20%23FF0000%3B%0Abackground%2Dcolor%3A%20%23FEFEBE%3B%0A%7D%0A%2Eoutput%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23e4e9e2%3B%0A%7D%0A%2Ewarning%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23eed0d4%3B%0A%7D" type="text/css" />
 
 
 
@@ -184,7 +184,7 @@ pre code {
 <h1>1. Before you start to analyze your data:</h1>
 <div id="set-up-your-working-directory" class="section level3">
 <h3>1.1 Set up your working directory</h3>
-<p>Working directory refers to the location (file path) on your computer where R can read in or save data. To get your current R working directory, use the <code>getwd()</code> function to do so. To change your working directory, use the <code>setwd()</code> function to do so. For example:</p>
+<p>Working directory refers to the location (file path) on your computer where R reads data from or save data to. To get your current R working directory, use the <code>getwd()</code> function to do so. To change your working directory, use the <code>setwd()</code> function to do so. For example:</p>
 <pre class="r code1"><code>getwd() # get your current working directory
 setwd(&quot;/Users/johnny/Desktop&quot;) # in the parenthesis, write down your file path, with double quotation marks surrounding it</code></pre>
 <p>If you are unsure as to how to get the file path of your folder, for windows users, click <a href="https://www.laptopmag.com/articles/show-full-folder-path-file-explorer">here</a>. For mac users, click <a href="https://macpaw.com/how-to/get-file-path-mac">here</a>.</p>
@@ -192,10 +192,10 @@ setwd(&quot;/Users/johnny/Desktop&quot;) # in the parenthesis, write down your f
 </div>
 <div id="install-r-packages" class="section level3">
 <h3>1.2 Install R packages</h3>
-<p>R is a very powerful statistical programming language, since it has a lot of packages that allow one to do complex statistical computations with just one command/line of code. Since in your analysis you’ll be very likely to conduct your analysis/visualization of data using packages, here I’ll show you how to install and use packages in R:</p>
+<p>R is a very powerful statistical programming language, since it has a lot of packages that allow one to do complex statistical computations with just few commands or lines of code. Since in your analysis you’ll be very likely to conduct your analysis/visualization of data using packages, here I’ll show you how to install and use packages in R:</p>
 <p>To install a package in R, use the <code>install.package()</code> function. The syntax of this function is shown below:</p>
 <pre class="r code1"><code>install.packages(&quot;package_name&quot;)</code></pre>
-<p>Note that package names are <b>case sensitive</b> (capitalized and not capitalized letters mean different things in R). For example, “GGPlot” is not the same as “ggplot.” So, remember to take note of the capitalization of the package name. You only have to do this once.</p>
+<p>Note that package names are <b>case sensitive</b> (capitalized and not capitalized letters mean different things in R). For example, “GGPlot” is not the same as “ggplot.” So, remember to take note of the capitalization of the package. You only have to do this once.</p>
 <p>Installing the packages is not enough, though. <b>You’ll need to “call” it to use it.</b> To “call” a package, use the <code>library()</code> function. The syntax is shown below:</p>
 <pre class="r code1"><code>library(package_name)</code></pre>
 <p>This time, you do not need the quotation marks to enclose the package name. You need to do this every time you start/restart a new R session.</p>
@@ -221,9 +221,9 @@ read.csv(&quot;your_data.csv&quot;)</code></pre>
 
 # Example: 
 test_score &lt;- psych::sat.act</code></pre>
-<p>In the example above, I took the data set with the name <code>sat.act</code> from the <code>psych</code> package and stored it onto the <code>test_score</code> variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you’ll be able to have a good idea of what variables you would like to work with when you need them.</p>
+<p>In the example above, I took the data set with the name <code>sat.act</code> from the <code>psych</code> package and stored it onto the <code>test_score</code> variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you’ll have a good idea of what variables you would like to work with when you need them.</p>
 <p>Next we’ll move on to describing data with R.</p>
-<p><a href="https://ludougan123234.github.io/Chapter_2.html">Go on to the next chapter</a> <br> <a href="https://ludougan123234.github.io/Index.html">Go back to Index</a></p>
+<p><a href="https://ludougan123234.github.io/Chapter_2.html">Go on to the next chapter</a> <br> <a href="https://ludougan123234.github.io/Index.html">Go back to index</a></p>
 </div>
 </div>
 

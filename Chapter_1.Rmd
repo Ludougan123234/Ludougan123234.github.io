@@ -8,7 +8,7 @@ output:
 
 # 1. Before you start to analyze your data: 
 ### 1.1 Set up your working directory
-Working directory refers to the location (file path) on your computer where R can read in or save data. To get your current R working directory, use the `getwd()` function to do so. To change your working directory, use the `setwd()` function to do so. For example: 
+Working directory refers to the location (file path) on your computer where R reads data from or save data to. To get your current R working directory, use the `getwd()` function to do so. To change your working directory, use the `setwd()` function to do so. For example: 
 ```{r class.source = "code1", eval = FALSE}
 getwd() # get your current working directory
 setwd("/Users/johnny/Desktop") # in the parenthesis, write down your file path, with double quotation marks surrounding it
@@ -18,20 +18,19 @@ If you are unsure as to how to get the file path of your folder, for windows use
 In the rest of the notebook, we'll assume that your survey data is placed in your working directory and not any other places. 
 
 ### 1.2 Install R packages
-R is a very powerful statistical programming language, since it has a lot of packages that allow one to do complex statistical computations with just one command/line of code. Since in your analysis you'll be very likely to conduct your analysis/visualization of data using packages, here I'll show you how to install and use packages in R: 
+R is a very powerful statistical programming language, since it has a lot of packages that allow one to do complex statistical computations with just few commands or lines of code. Since in your analysis you'll be very likely to conduct your analysis/visualization of data using packages, here I'll show you how to install and use packages in R: 
 
 To install a package in R, use the `install.package()` function. The syntax of this function is shown below:
 ```{r class.source = "code1", eval = FALSE}
 install.packages("package_name")
 ```
-Note that package names are <b>case sensitive</b> (capitalized and not capitalized letters mean different things in R). For example, "GGPlot" is not the same as "ggplot." So, remember to take note of the capitalization of the package name. You only have to do this once.
+Note that package names are <b>case sensitive</b> (capitalized and not capitalized letters mean different things in R). For example, "GGPlot" is not the same as "ggplot." So, remember to take note of the capitalization of the package. You only have to do this once.
 
 Installing the packages is not enough, though. <b>You'll need to "call" it to use it.</b> To "call" a package, use the `library()` function. The syntax is shown below: 
 ``` {r class.source = "code1", eval = FALSE}
 library(package_name)
 ```
 This time, you do not need the quotation marks to enclose the package name. You need to do this every time you start/restart a new R session.
-
 
 ### 1.3 Read data into the R environment
 To read your survey data into R, you will use the following functions, depending on the file type of your survey data. Normally, if you're using Google forms, the file will be in .xlsx format or .csv format. To read .xlsx files, use `read.xlsx()` function from the `xlsx` package. To read .csv files, use `read.csv()` function. The syntax is demonstrated as follows:
@@ -56,10 +55,10 @@ Using read functions to read in data is not enough. You'll need a <strong>variab
 # Example: 
 test_score <- psych::sat.act
 ```
-In the example above, I took the data set with the name `sat.act` from the `psych` package and stored it onto the `test_score` variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you'll be able to have a good idea of what variables you would like to work with when you need them. 
+In the example above, I took the data set with the name `sat.act` from the `psych` package and stored it onto the `test_score` variable. A good programming practice is to <strong>always keep your variable names readable</strong> so that you'll have a good idea of what variables you would like to work with when you need them. 
 
 Next we'll move on to describing data with R. 
 
 [Go on to the next chapter](https://ludougan123234.github.io/Chapter_2.html) <br>
-[Go back to Index](https://ludougan123234.github.io/Index.html)
+[Go back to index](https://ludougan123234.github.io/Index.html)
 

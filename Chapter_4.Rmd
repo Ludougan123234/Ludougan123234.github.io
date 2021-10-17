@@ -8,7 +8,7 @@ output:
 
 # Chapter 4. Correlation and regression
 
-Your research might deal with a research question like  "what is the <strong>correlation</strong> between x and y" or "how do x and y predict z". With this type of question, we have to use "correlation analysis" and "regression analysis" to investigate the relationship between your research variables. Although correlation analysis is also considered a type of descriptive statistical analysis, correlation involves multivariate explorations. Thus, I decided to separate correlation analysis from descriptive statistics. In this chapter, I will go through how to do a correlation analysis, using the same `sat.act` data set, and how to interpret the outputs from the program.
+Your research might deal with a research question like  "what is the <strong>correlation</strong> between x and y" or "how do x and y predict z". With this type of question, we have to use "correlation analysis" and "regression analysis" to investigate the relationship between your research variables. Although correlation analysis is also considered a type of descriptive statistical analysis, correlation is a type of "multivariate exploration" (more than two varaibles are involved in a single statistical test). Therefore, I decided to separate correlation analysis from descriptive statistics. In this chapter, I will go through the steps to doing a correlation analysis, using the same `sat.act` data set, and how to interpret the outputs from the program.
 
 ## 4.1 Correlation analysis 
 
@@ -36,7 +36,7 @@ We focus on 2 outputs: the `cor` and the `p-value`. In this output, we see that 
 
 Aside from the correlation coefficient, another output to take note of is the <strong>p-value</strong>. In hypothesis testing, there are two types of hypotheses: Null hypothesis ($H_0$) and Alternative hypothesis ($H_1$). Null hypothesis states that a parameter is equal to a hypothesized value (in Pearson correlation, this value is 0). Alternative hypothesis, on the other hand, states that a parameter is different from a hypothesized value and is often what you hope to prove true. If p-value > 0.05, this means that we've failed to reject $H_0$, and your result will bes considered statistically insignificant. If p-value < 0.05, this means that we've rejected $H_0$ successfully and that we have enough confidence in accepting $H_1$. In this case, we would say that the result has "statistical significance".
 
-In more rigorous cases, the threshold might be much smaller than 0.05. However, in the field of applied linguistics and social science, 0.05 seems to be good enough for most cases, and thus 0.05 has become the de facto p-value threshold. 
+In more rigorous cases, the threshold might be much smaller than 0.05. However, in the field of applied linguistics and social science, 0.05 seems to be good enough, and thus 0.05 has become the de facto p-value threshold. 
 
 Combining the results, we say that there is a <strong>statistically significant, positive correlation</strong> between SATV and SATQ scores. This means that those who score higher on SATV tend to score higher on SATQ.
 
@@ -64,7 +64,7 @@ The function gives us 3 outputs: `correlation matrix`, `sample size` and `probab
 
 
 ## 4.2 Multiple linear regression
-Previously, we've talked about correlation between 2 variables. Now we will move on to multiple linear regression, which is a technique to estimate the relationship between two or more independent variable (predictor) and one dependent variable. It might be simpler to understand this in mathematical equations: 
+Previously, we've talked about correlation between 2 variables. Now we will move on to multiple linear regression, which is a technique used to estimate the relationship between two or more independent variables (predictor) and one dependent variable. It might be simpler to understand this in mathematical equations: 
 
 $y = \beta_0 + \beta_1X_1 + ... + \beta_nX_n + \epsilon$
 <br><ul>
@@ -88,14 +88,17 @@ summary(score_lm)
 ```
 
 From the `residuals` section, we can see that the minimum and maximum are around -17 and 18, with the median being 0.08. This is probably a good sign that the model fits the assumption of homoscedacity. <br>
+
 We then focus on the `coefficients` section of the output, where we construct the mathematical equation that describes the relationship between ACT, SATV, and SATQ scores. First we look at the `(Intercept)`. This is the y-intercept of the formula. Then, we look at the `Estimate` of SATQ and SATV. `0.016142` and `0.013284` are the regression coefficient of SATQ and SATV, respectively. So, from this output, we can construct that: <br> $ACT \space score = 10.57 + (0.02 * SATQ) + (0.01 * SATV)$ 
 
 Since that the p-values (`Pr(>|t|)`) are all less than 0.05, we can say that SATQ and SATV are both statistically significant indicators of ACT scores. 
+
+Lastly, we look at `Multiple R-squared` ($R^2$). $R^2$ represents the proportion of variance in the dependent variable that can be predicted by independent variables. An R2 value close to 1 indicates that the model (the equation) explains a large portion of the variance in the outcome variable. In our example, with SATQ and SATV scores as predictor variables, the adjusted $R^2 \approx 0.40$, meaning that “40% of the variance in ACT scores can be predicted by SATQ and SATV scores.
 
 And that wraps up our discussion on correlation and linear regression. You can choose to <br> [Go back to the main page](https://ludougan123234.github.io/Index.html) or <br> [Go to the next chapter](https://ludougan123234.github.io/Chapter_5.html)
 
 
 References:
-1. [Correlation types and when to use them](https://ademos.people.uic.edu/Chapter22.html)
-2. [Multiple linear regression by Rebecca Bevans](https://www.scribbr.com/statistics/multiple-linear-regression/)
+1. [Correlation types and when to use them](https://ademos.people.uic.edu/Chapter22.html)<br>
+2. [Multiple linear regression by Rebecca Bevans](https://www.scribbr.com/statistics/multiple-linear-regression/)<br>
 3. [Null hypothesis and alternative hypothesis by Minitab 18 support](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/basics/null-and-alternative-hypotheses/#:~:text=The%20null%20hypothesis%20states%20that,equal%20to%20a%20hypothesized%20value.&text=The%20alternative%20hypothesis%20is%20what,or%20hope%20to%20prove%20true.)
