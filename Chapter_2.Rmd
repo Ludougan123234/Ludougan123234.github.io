@@ -76,16 +76,17 @@ From this output table, we can see that the function gives us several outputs: `
 |vars|Item number|
 |n| Number of valid cases|
 |Mean| The arithmetic average of all observations (values) in the data set. The mean of a given data set is calculated summing all data points and divide it by the number of data points in the data set. |
-|sd|Stands for "Standard deviation". Higher SD means that your data is high in variability (spread widely around the central point of the data set). <br> <i>Derivation: SD is derived by taking the square root of the variance of the data set (variance: the sum of the squared deviations of all data points divided by the number of data points. Deviation is the difference between any given value in the data set and the mean of the sample) </i> <br>In the graph below, SD is denoted by "σ"<br>![sd](sd.png)|
+|sd|Stands for "Standard deviation". Higher SD means that your data is high in variability (spread widely around the central point of the data set). <br> <i>Derivation: SD is derived by taking the square root of the variance of the data set (variance: the sum of the squared deviations of all data points divided by the number of data points. Deviation is the difference between any given value in the data set and the mean of the sample). <br> Mathematically, the sd is calculated using the formula: $\sqrt{\frac{\Sigma_{i=1}^n(x_i - \mu)^2}{N}}$, where $x_i$ is a data point, $\mu$ is the population mean, and $N$ is the number of samples. </i> <br>In the graph below, SD is denoted by $\sigma$<br>![sd](sd.png)|
 |median| Median stands for the "middle point" of your data. Median is obtained by sorting the values in your data set in ascending order and finding mid-point value.|
 |trimmed| Stands for "trimmed mean" (also called "truncated mean"). Trimmed mean is calculated by "trimming" (i.e., discarding) a small percentage of the largest and smallest value before actually calculating the mean. The default trimming percentage in the `psych` package is 0.1, which means that the highest and lowest 10% of values in the data set will be removed before calculating the mean.| 
-|mad|Stands for "Median absolute deviation". MAD is the average distance between each data point and the mean.|
+|mad|Stands for "Median absolute deviation". MAD is obtained by taking the median value of the absolute value of the differences between each data point and the mean. <br>Mathematically, this is denoted as $MAD = median(|X_i - \tilde{X}|)$, where $X_i$ denotes the value of each data point, and $\tilde{X}$ denotes the mean/median of the dataset.|
 |min| The minimum value in your data set |
 |max| The maximum value in your data set|
 |range| = max - min|
 |skew| Stands for "skewness" <br>If your data is <strong>positively skewed</strong>, the mass of the distribution is concentrated on the left of the figure <br>If your data is <strong>negatively skewed</strong>, the mass of the distribution is concentrated on the right of the figure. ![Skewness](skew.jpeg)|
 |kurtosis| Kurtosis refers to the "peakedness" of the data distribution. If your data has a positive kurtosis (leptokurtic kurtosis), the distribution of your data would look more "pointed" or "peaked", while a negative kurtosis (platykurtic kurtosis) means that the distribution of the data looks "flat". See the picture below: <br> ![kurtosis](kurt.jpeg)|
 |se| Stands for "standard error." SE gives the accuracy of a sample mean by measuring the sample-to-sample variability of the sample mean. SE is calculated by dividing the SD by the square root of sample numbers (n) (i.e., $\sigma/\sqrt{n}$). <br> For example, see SATV SD = 112.9, then the SE of SATV = $112.9/\sqrt{700}\approx{4.27}$|
+|Variance| See "sd" (standard deviation) | 
 
 (Kissell and Poserina, 2017; Kotu and Deshpande, 2019)
 
