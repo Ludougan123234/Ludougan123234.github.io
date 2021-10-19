@@ -471,6 +471,20 @@ kable(describe(test_score)) #ignore the &quot;kable()&quot; function. It&#39;s j
 </tbody>
 </table>
 <p>And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the <code>gender</code> and <code>education</code> variable, they do not mean more, since <code>gender</code> and <code>education</code> are both categorical variables described in numeric format.</p>
+<ul>
+<li>Since the <code>describe()</code> function in the <code>psych</code> package does not compute the variance of the data set, if you need the “variance” of your data, use the <code>var()</code> function from the <code>stats</code> package to compute the variance. See the following example:</li>
+</ul>
+<pre class="r code1"><code># load package
+library(stats)
+
+# Syntax: var(data)
+var(test_score$ACT)</code></pre>
+<pre class="output"><code>## [1] 23.26673</code></pre>
+<pre class="r code1"><code># Since SATQ column contains some missing values (NA), we us na.rm = TRUE to remove missing values
+var(test_score$SATQ, na.rm=TRUE)</code></pre>
+<pre class="output"><code>## [1] 13372.45</code></pre>
+<pre class="r code1"><code>var(test_score$SATV)</code></pre>
+<pre class="output"><code>## [1] 12746.99</code></pre>
 </div>
 <div id="getting-to-know-the-outputs" class="section level2">
 <h2>2.3 Getting to know the outputs</h2>

@@ -56,6 +56,18 @@ kable(describe(test_score)) #ignore the "kable()" function. It's just here to be
 
 And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean more, since `gender` and `education` are both categorical variables described in numeric format. 
 
+* Since the `describe()` function in the `psych` package does not compute the variance of the data set, if you need the "variance" of your data, use the `var()` function from the `stats` package to compute the variance. See the following example: 
+``` {r class.source = "code1", class.output = "output"}
+# load package
+library(stats)
+
+# Syntax: var(data)
+var(test_score$ACT)
+# Since SATQ column contains some missing values (NA), we us na.rm = TRUE to remove missing values
+var(test_score$SATQ, na.rm=TRUE)
+var(test_score$SATV)
+```
+
 ## 2.3 Getting to know the outputs 
 From this output table, we can see that the function gives us several outputs: `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, and `se`. Below is a table showing the explanation for each output: 
 
