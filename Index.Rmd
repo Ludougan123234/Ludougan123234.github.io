@@ -22,6 +22,8 @@ Hello there! This is a notebook where you'll be introduced to analyzing quantita
 [Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)](https://ludougan123234.github.io/Chapter_6.html) <br><br>
 </strong> 
 
+#### [Trial dataset](https://docs.google.com/spreadsheets/d/1HMFB2SlhmPBS0ArC7Xr0fs-FVmVwRPw-/edit?usp=sharing&ouid=103982434321837829440&rtpof=true&sd=true)
+
 ``` {text class.source = "code2", eval = FALSE}
 ERRATUM: (LAST UPDATED 2021/10/10)
 
