@@ -6,7 +6,7 @@ output:
     toc: yes
 ---
 # 2. Descriptive statistics and variable types
-Descriptive statistics, as its name suggests, is the kind of statistics that describes your data. Obviously, it would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main aspects of a data set: 
+Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. Obviously, it would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could "describe" your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main aspects of a data set: 
 
 | Characteristics| Measurement technique |
 | :----: | :----:| 
@@ -54,7 +54,7 @@ library(knitr)
 kable(describe(test_score)) #ignore the "kable()" function. It's just here to beautify the output in the website
 ```
 
-And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean more, since `gender` and `education` are both categorical variables described in numeric format. 
+And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the `gender` and `education` variable, they do not mean much, since `gender` and `education` are both categorical variables described in numeric format. 
 
 * Since the `describe()` function in the `psych` package does not compute the variance of the data set, if you need the "variance" of your data, use the `var()` function from the `stats` package to compute the variance. See the following example: 
 ``` {r class.source = "code1", class.output = "output"}

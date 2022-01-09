@@ -57,7 +57,7 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="data:text/css,%2Ecode1%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20black%3B%0Abackground%2Dcolor%3A%20%23dfe6eb%3B%0A%7D%0A%2Ecode2%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20%23FF0000%3B%0Abackground%2Dcolor%3A%20%23FEFEBE%3B%0A%7D%0A%2Eoutput%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23e4e9e2%3B%0A%7D%0A%2Ewarning%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23eed0d4%3B%0A%7D" type="text/css" />
+<link rel="stylesheet" href="data:text/css,%2Ecode1%7B%0Afont%2Dfamily%3A%20%27JetBrins%20Mono%27%2C%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20black%3B%0Abackground%2Dcolor%3A%20%23dfe6eb%3B%0A%7D%0A%2Ecode2%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Acolor%3A%20%23FF0000%3B%0Abackground%2Dcolor%3A%20%23FEFEBE%3B%0A%7D%0A%2Eoutput%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23e4e9e2%3B%0A%7D%0A%2Ewarning%7B%0Afont%2Dfamily%3A%20Monospace%3B%0Afont%2Dsize%3A%2010pt%3B%0Abackground%2Dcolor%3A%20%23eed0d4%3B%0A%7D" type="text/css" />
 
 
 
@@ -183,7 +183,7 @@ pre code {
 
 <div id="descriptive-statistics-and-variable-types" class="section level1">
 <h1>2. Descriptive statistics and variable types</h1>
-<p>Descriptive statistics, as its name suggests, is the kind of statistics that describes your data. Obviously, it would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could “describe” your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main aspects of a data set:</p>
+<p>Descriptive statistics, as its name suggests, is the kind of statistics that describe your data. Obviously, it would be hard to directly observe any meaningful patterns or get useful information by just looking at the raw data. With descriptive statistics, we could “describe” your data in a meaningful way, or even make initial assumptions about the phenomenon that you are investigating. Normally, descriptive statistical analysis covers three main aspects of a data set:</p>
 <table>
 <colgroup>
 <col width="50%" />
@@ -470,7 +470,7 @@ kable(describe(test_score)) #ignore the &quot;kable()&quot; function. It&#39;s j
 </tr>
 </tbody>
 </table>
-<p>And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the <code>gender</code> and <code>education</code> variable, they do not mean more, since <code>gender</code> and <code>education</code> are both categorical variables described in numeric format.</p>
+<p>And there you have the descriptive statistics for your data set! Note that although the program still gives outputs for the <code>gender</code> and <code>education</code> variable, they do not mean much, since <code>gender</code> and <code>education</code> are both categorical variables described in numeric format.</p>
 <ul>
 <li>Since the <code>describe()</code> function in the <code>psych</code> package does not compute the variance of the data set, if you need the “variance” of your data, use the <code>var()</code> function from the <code>stats</code> package to compute the variance. See the following example:</li>
 </ul>

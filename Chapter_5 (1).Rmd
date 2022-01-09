@@ -1,0 +1,53 @@
+---
+title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
+output:
+  html_document:
+    css: style.css
+---
+
+# Chapter 5 - Data visualization - using correlation plots as an example
+Sometimes, it is not enough to just report your findings with numeric or textual descriptions.  You'll need to make your discoveries more "palatable", or, more easily observed by general public. Visualizing your data and findings is a good way to do so. In this chapter, I will demonstrate how to use R packages to visualize your findings. 
+
+
+## 5.1 Correlation plot with `PerformanceAnalytics` package
+`PerformanceAnalytics` package offers a function that allows you to produce correlation plot. See the below example: 
+``` {r class.source = "code1", class.output = "output", message = FALSE}
+# load data set
+test_score <- psych::sat.act
+# retain ACT, SATV, SATQ score data only
+test_score <- test_score[, c(4:6)]
+# load library
+library(PerformanceAnalytics)
+
+# Syntax: chart.Correlation(data)
+chart.Correlation(test_score)
+```
+
+As you can see, the plot looks like a correlation matrix. The lower diagonal shows the scatter plot of your data and the regression line. The diagonal of the plot shows you the distribution of data. The upper diagonal shows you the correlation coefficient with p-value markings. 
+
+## 5.2 Correlation plot with `ggally` and `ggplot2` package
+`GGally` package offers a function that allows you to produce correlation plots and also allows grouping. See the below example: 
+``` {r class.source = "code1", class.output = "output", message = FALSE, warning = FALSE}
+# load library and data set
+test_score <- psych::sat.act
+# Mutate data set 
+# the grouping variables should not be numeric, according to ggally
+# so if gender == 1, then replace 1 with "Male", if gender == 2, then replace 2 with "Female"
+test_score$gender[test_score$gender==2] <- "Female"
+test_score$gender[test_score$gender==1] <- "Male"
+library(ggplot2)
+library(GGally)
+
+# Syntax: ggpairs(data, columns = columns_with_data, ggplot2::aes(colour = grouping_variable))
+ggpairs(test_score, columns = 4:6, ggplot2::aes(colour = gender))
+```
+
+
+There are many other plot types in R. You can further explore the type of visualization you want to use in your research. Here are a few resources that you might find useful when learning how to visualize data with R: <br>
+1. [The R graph gallery](https://www.r-graph-gallery.com/index.html)<br>
+2. [Data visualization with R](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)<br>
+3. [Data visualization with R (eBook)](https://rkabacoff.github.io/datavis/)
+
+<br><br><br>
+[Go back to index](https://ludougan123234.github.io/Index.html) <br>
+[Go to the next chapter](https://ludougan123234.github.io/Chapter_6.html)
