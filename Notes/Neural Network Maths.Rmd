@@ -1,0 +1,41 @@
+---
+title: "Neural networks nb"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+```
+
+## R Markdown
+http://neuralnetworksanddeeplearning.com/chap2.html
+
+https://arxiv.org/pdf/1802.01528.pdf
+
+https://www.youtube.com/watch?v=Ixl3nykKG9M&ab_channel=AdamDhalla
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r engine='Rcpp'}
+#include <Rcpp.h>
+
+// [[Rcpp::export]]
+int hi(const int x) {
+    printf("Hello");
+    return 0;
+}
+```
+
+```{python}
+print("hello python")
+```

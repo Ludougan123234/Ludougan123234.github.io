@@ -1,14 +1,13 @@
 ---
-title: "A Gentle Introduction to R and Statistics (CC3 Statistics Workshop)"
+title: "A Gentle Introduction to R and statistics (CC3 Statistics Workshop)"
 output:
   html_document:
     css: style.css
-    toc: yes
 ---
 
 # Chapter 6: Questionnaire analysis (Internal consistency, EFA, CFA, SEM)
 
-If you are conducting a questionnaire research and would like to go farther with item analysis, you could conduct, but not limited to, the following data analysis methods. In this section, I will not demonstrate how to do these analysis in R, but give you to some resources that you could reference to when you want to do the analysis mentioned below.
+If you are conducting a questionnaire research and would like to go farther with your analysis, you could conduct, but not limited to, the following data analysis methods. In this section, I will not demonstrate how to do these analysis in R, but give you to some resources that you could reference to when you want to do the analysis mentioned below.
 
 ## Chapter 6.1 - Internal consistency (Cronbach's $\alpha$)
 Internal consistency tests whether if your questionnaire is measuring the same thing or not and is considered an index that measures the reliability of your questionnaire. To conduct an internal consistency test, use the `alpha()` function in the `psych` package. 
@@ -21,12 +20,11 @@ For how to implement EFA using R, please refer to [This website](https://stats.i
 ## Chapter 6.3 - Confirmatory factor analysis (CFA) 
 For a detailed explanation of CFA, please see chapter 21 of the [Palgrave Handbook of Applied Linguistics Research methodology](https://autorpa.lib.fju.edu.tw/login?url=https://doi.org/10.1057/978-1-137-59900-1). FJCU has purchased the electronic access for this book. To access this book, click on the link and enter your library account. You should be directed to Springer Link, where you can download the .pdf file for this book. 
 
-For how to implement CFA using R, please refer to [This website](https://stats.idre.ucla.edu/r/seminars/rcfa/).
-
-* Something to note that is if you decide to do EFA and CFA at the same time (on the same sample), you should split the data into 2 portions in a certain ratio and do analysis. 
+For how to implement CFA using R, please refer to [This website](https://stats.idre.ucla.edu/r/seminars/rcfa/)
 
 ## Chapter 6.4 - Structural Equational Modeling (SEM)
 In R, the tool that you will be using for SEMs is called `lavaan`. For more information, please see [this website](https://stats.idre.ucla.edu/r/seminars/rsem/)
+
 
 
 
