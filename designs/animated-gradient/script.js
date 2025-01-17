@@ -24,11 +24,12 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+// TODO: Change hsla coloring from automatic compute to manual rgb input
 function updateGradientPositions(positions) {
   const gradient = positions
     .map(
       (pos, i) =>
-        `radial-gradient(at ${pos.x}% ${pos.y}%, hsla(${i * 35}, 100%, 70%, 1) 0px, transparent 75%)`
+        `radial-gradient(at ${pos.x}% ${pos.y}%, hsla(${i * 35}, 100%, 70%, 1) 0px, transparent 50%)`
     )
     .join(", ");
 
