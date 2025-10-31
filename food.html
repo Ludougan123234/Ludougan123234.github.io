@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<title>可供食品使用原料 — 資料表（含篩選與詳情）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{--gap:12px;--radius:10px;--border:#e5e7eb;--text:#111827;--muted:#6b7280;}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;color:var(--text);margin:24px;}
+  .toolbar{display:grid;grid-template-columns:1fr repeat(3, minmax(180px, 260px)) auto;gap:var(--gap);align-items:center;margin-bottom:var(--gap);}
+  .toolbar label{display:flex;gap:8px;align-items:center;white-space:nowrap;}
+  .toolbar select,.toolbar input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;}
+  .table-wrap{overflow:auto;border:1px solid var(--border);border-radius:var(--radius);}
+  table{border-collapse:collapse;width:100%;min-width:900px;}
+  thead th{position:sticky;top:0;background:#fafafa;border-bottom:1px solid var(--border);text-align:left;padding:10px 12px;font-weight:600;cursor:pointer;user-select:none;}
+  tbody td{border-top:1px solid var(--border);padding:10px 12px;vertical-align:top;}
+  th.sortable:hover{background:#f3f4f6;}
+  th .indicator{font-size:12px;color:var(--muted);margin-left:6px;}
+  .muted{color:var(--muted);}
+  .btn{padding:8px 10px;border:1px solid var(--border);background:#fff;border-radius:8px;cursor:pointer;}
+  .btn.primary{border-color:#2563eb;color:#2563eb;}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;}
+  .pagination{margin-top:var(--gap);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .pagination .info{margin-left:auto;color:var(--muted);}
+  .nowrap{white-space:nowrap;}
+  .link{color:#2563eb;text-decoration:underline;}
+  /* dialog (native modal) */
+  dialog{border:none;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.18);padding:0;max-width:720px;width:clamp(320px, 80vw, 720px);}
+  .dlg-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .dlg-title{font-weight:700;}
+  .dlg-body{padding:20px;display:grid;gap:12px;}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start;}
+  .kv .k{color:var(--muted);}
+  .dlg-foot{padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;}
+  @media (max-width: 540px){ .toolbar{grid-template-columns:1fr; } .kv{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+  <h1 style="margin:0 0 6px 0;">可供食品使用原料 — 資料表</h1>
+  <div class="muted" style="margin-bottom:16px;">支援：關鍵字搜尋、<b>大分類 / 次分類</b>下拉篩選、欄位排序、分頁；備註與檔案下載放入「詳情」彈窗。</div>
+
+  <div class="toolbar">
+    <label>搜尋
+      <input id="q" type="search" placeholder="輸入任意關鍵字（學名、中文名稱、部位…）" />
+    </label>
+    <label>大分類
+      <select id="catA"></select>
+    </label>
+    <label>次分類
+      <select id="catB"></select>
+    </label>
+    <label class="nowrap">每頁
+      <select id="pagesize">
+        <option>10</option><option selected>25</option><option>50</option><option>100</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="table-wrap">
+    <table id="grid" aria-describedby="table of ingredients">
+      <thead><tr id="thead-row"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <button class="btn" id="first">« 最前</button>
+    <button class="btn" id="prev">‹ 上一頁</button>
+    <span id="page" class="nowrap"></span>
+    <button class="btn" id="next">下一頁 ›</button>
+    <button class="btn" id="last">最後 »</button>
+    <span class="info" id="info"></span>
+  </div>
+
+  <!-- 詳情 Modal -->
+  <dialog id="detailDialog">
+    <div class="dlg-head">
+      <div class="dlg-title" id="dlgTitle">詳情</div>
+      <button class="btn" id="dlgClose" aria-label="關閉">關閉</button>
+    </div>
+    <div class="dlg-body" id="dlgBody"></div>
+    <div class="dlg-foot">
+      <button class="btn primary" id="dlgOk">好的</button>
+    </div>
+  </dialog>
+
+<script>
+/* ====================== Config ====================== */
+const columns = [
+  { key:"大分類", label:"大分類" },
+  { key:"次分類", label:"次分類" },
+  { key:"中文名稱", label:"中文名稱" },
+  { key:"外文名稱", label:"外文名稱" },
+  { key:"學名",   label:"學名" },
+  { key:"部位",   label:"部位" },
+  // 備註 & 檔案下載 -> 改成詳情按鈕（開啟 modal）
+  { key:"_actions", label:"操作", render: (_v, row) =>
+      `<button class="btn" data-action="detail">詳情</button>`
+  }
+];
+
+/* ====================== State & UI refs ====================== */
+const ui = {
+  q: document.getElementById('q'),
+  catA: document.getElementById('catA'),
+  catB: document.getElementById('catB'),
+  pagesize: document.getElementById('pagesize'),
+  thead: document.getElementById('thead-row'),
+  tbody: document.getElementById('tbody'),
+  first: document.getElementById('first'),
+  prev: document.getElementById('prev'),
+  next: document.getElementById('next'),
+  last: document.getElementById('last'),
+  page: document.getElementById('page'),
+  info: document.getElementById('info'),
+  dlg: document.getElementById('detailDialog'),
+  dlgTitle: document.getElementById('dlgTitle'),
+  dlgBody: document.getElementById('dlgBody'),
+  dlgClose: document.getElementById('dlgClose'),
+  dlgOk: document.getElementById('dlgOk')
+};
+
+const state = {
+  data: [], filtered: [],
+  sortKey: null, sortDir: 1,
+  pageSize: 25, page: 1,
+  filterA: "全部", filterB: "全部"
+};
+
+/* ====================== Utils ====================== */
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m])); }
+function isNumericLike(x){ return x!==null && x!=="" && !isNaN(Number(x)); }
+function cmpLocale(a,b){ if(isNumericLike(a)&&isNumericLike(b)) return Number(a)-Number(b);
+  return String(a).localeCompare(String(b),'zh-Hant',{sensitivity:'base',numeric:true}); }
+function uniqSorted(arr){ return [...new Set(arr.filter(x=>x!==null && x!=="" ))].sort((a,b)=>cmpLocale(a,b)); }
+
+/* ====================== Header / Body ====================== */
+function renderHeader(){
+  ui.thead.innerHTML = "";
+  for(const col of columns){
+    const th = document.createElement('th');
+    th.textContent = col.label;
+    th.classList.add('sortable');
+    th.dataset.key = col.key;
+    const ind = document.createElement('span'); ind.className='indicator';
+    if(state.sortKey===col.key) ind.textContent = state.sortDir===1 ? "▲" : "▼";
+    th.appendChild(ind);
+    th.addEventListener('click', ()=>{
+      if(col.key === "_actions") return; // 不對操作欄排序
+      state.sortKey===col.key ? (state.sortDir*=-1) : (state.sortKey=col.key,state.sortDir=1);
+      applySort(); renderHeader(); renderBody(); renderPager();
+    });
+    ui.thead.appendChild(th);
+  }
+}
+
+function renderBody(){
+  ui.tbody.innerHTML = "";
+  const start = (state.page-1)*state.pageSize;
+  const rows = state.filtered.slice(start, start+state.pageSize);
+  for(const row of rows){
+    const tr = document.createElement('tr');
+    for(const col of columns){
+      const td = document.createElement('td');
+      if(col.key === "_actions"){
+        td.innerHTML = col.render(null, row);
+        td.addEventListener('click', (e)=>{
+          const btn = e.target.closest('button[data-action="detail"]');
+          if(btn){ openDetail(row); }
+        });
+      } else {
+        const val = row[col.key] ?? "";
+        td.innerHTML = col.render ? col.render(val,row) : escapeHtml(val);
+      }
+      tr.appendChild(td);
+    }
+    ui.tbody.appendChild(tr);
+  }
+}
+
+/* ====================== Pager ====================== */
+function renderPager(){
+  const total = state.filtered.length;
+  const maxPage = Math.max(1, Math.ceil(total/state.pageSize));
+  state.page = Math.min(state.page, maxPage);
+  ui.page.textContent = `第 ${state.page} / ${maxPage} 頁`;
+  ui.first.disabled = ui.prev.disabled = state.page===1;
+  ui.next.disabled = ui.last.disabled = state.page>=maxPage;
+
+  const start = total ? (state.page-1)*state.pageSize+1 : 0;
+  const end   = Math.min(total, state.page*state.pageSize);
+  ui.info.textContent = total ? `顯示第 ${start}-${end} 筆，共 ${total} 筆` : `沒有符合的資料`;
+}
+
+/* ====================== Filters & Sort ====================== */
+function applyFilter(){
+  const needle = ui.q.value.trim().toLowerCase();
+  const fa = state.filterA, fb = state.filterB;
+
+  state.filtered = state.data.filter(row=>{
+    // dropdown constraints
+    if(fa!=="全部" && (row["大分類"]||"") !== fa) return false;
+    if(fb!=="全部" && (row["次分類"]||"") !== fb) return false;
+    // keyword against visible columns + 備註
+    if(!needle) return true;
+    const hay = [
+      row["大分類"], row["次分類"], row["中文名稱"],
+      row["外文名稱"], row["學名"], row["部位"], row["備註"]
+    ].map(x=>String(x??"").toLowerCase()).join("§");
+    return hay.includes(needle);
+  });
+
+  state.page = 1;
+  applySort();
+}
+
+function applySort(){
+  if(!state.sortKey){ state.filtered = state.filtered.slice(); return; }
+  const {sortKey:k, sortDir:d} = state;
+  state.filtered.sort((a,b)=> d * cmpLocale(a[k]??"", b[k]??""));
+}
+
+/* ====================== Dropdown population ====================== */
+function populateDropdowns(){
+  // 大分類 options
+  const A = ["全部", ...uniqSorted(state.data.map(r=>r["大分類"]))];
+  ui.catA.innerHTML = A.map(x=>`<option>${escapeHtml(x)}</option>`).join("");
+  ui.catA.value = state.filterA;
+
+  // 次分類 depends on 大分類
+  const filteredForB = (state.filterA==="全部")
+    ? state.data
+    : state.data.filter(r => (r["大分類"]||"") === state.filterA);
+
+  const B = ["全部", ...uniqSorted(filteredForB.map(r=>r["次分類"]))];
+  const oldB = ui.catB.value;
+  ui.catB.innerHTML = B.map(x=>`<option>${escapeHtml(x)}</option>`).join("");
+  // keep selection if still valid; else reset to 全部
+  ui.catB.value = B.includes(oldB) ? oldB : "全部";
+  state.filterB = ui.catB.value;
+}
+
+/* ====================== Modal (詳情) ====================== */
+function openDetail(row){
+  ui.dlgTitle.textContent = `${row["中文名稱"] || row["學名"] || "詳情"}`;
+  const url = (row["檔案下載_URL"]||"").trim();
+  const name = (row["檔案下載_名稱"]||"").trim() || (url ? "下載" : "—");
+
+  ui.dlgBody.innerHTML = `
+    <div class="kv"><div class="k">中文名稱</div><div>${escapeHtml(row["中文名稱"]||"—")}</div></div>
+    <div class="kv"><div class="k">學名</div><div>${escapeHtml(row["學名"]||"—")}</div></div>
+    <div class="kv"><div class="k">大分類</div><div>${escapeHtml(row["大分類"]||"—")}</div></div>
+    <div class="kv"><div class="k">次分類</div><div>${escapeHtml(row["次分類"]||"—")}</div></div>
+    <div class="kv"><div class="k">部位</div><div>${escapeHtml(row["部位"]||"—")}</div></div>
+    <div class="kv"><div class="k">備註</div><div>${escapeHtml(row["備註"]||"—")}</div></div>
+    <div class="kv"><div class="k">檔案下載</div>
+      <div>${ url ? `<a class="link" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>` : "—" }</div>
+    </div>
+  `;
+
+  // show modal
+  ui.dlg.showModal();
+}
+ui.dlgClose.addEventListener('click', ()=> ui.dlg.close());
+ui.dlgOk.addEventListener('click', ()=> ui.dlg.close());
+ui.dlg.addEventListener('click', (e)=>{ // backdrop click closes
+  const rect = ui.dlg.getBoundingClientRect();
+  const inDialog = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+  if(!inDialog) ui.dlg.close();
+});
+
+/* ====================== Wiring & Bootstrap ====================== */
+function showLoading(msg){ ui.tbody.innerHTML = `<tr><td colspan="${columns.length}" class="muted">${escapeHtml(msg)}</td></tr>`; }
+function showError(msg){ ui.tbody.innerHTML = `<tr><td colspan="${columns.length}" style="color:#b91c1c">${escapeHtml(msg)}</td></tr>`; }
+
+function installHandlers(){
+  ui.q.addEventListener('input', ()=>{ applyFilter(); renderBody(); renderPager(); });
+
+  ui.catA.addEventListener('change', ()=>{
+    state.filterA = ui.catA.value;
+    populateDropdowns(); // updates B list & state.filterB
+    applyFilter(); renderBody(); renderPager();
+  });
+
+  ui.catB.addEventListener('change', ()=>{
+    state.filterB = ui.catB.value;
+    applyFilter(); renderBody(); renderPager();
+  });
+
+  ui.pagesize.addEventListener('change', ()=>{
+    state.pageSize = Number(ui.pagesize.value)||25;
+    state.page = 1; renderBody(); renderPager();
+  });
+
+  ui.first.addEventListener('click', ()=>{ state.page=1; renderBody(); renderPager(); });
+  ui.prev .addEventListener('click', ()=>{ state.page=Math.max(1,state.page-1); renderBody(); renderPager(); });
+  ui.next .addEventListener('click', ()=>{ const max=Math.ceil(state.filtered.length/state.pageSize)||1; state.page=Math.min(max,state.page+1); renderBody(); renderPager(); });
+  ui.last .addEventListener('click', ()=>{ state.page=Math.max(1, Math.ceil(state.filtered.length/state.pageSize)); renderBody(); renderPager(); });
+}
+
+async function bootstrap(){
+  installHandlers();
+  renderHeader(); showLoading("載入中…");
+
+  const params = new URLSearchParams(location.search);
+  const url = 'https://raw.githubusercontent.com/Ludougan123234/food-ingredient-table/refs/heads/main/serve.json';
+
+  try{
+    const res = await fetch(url, { headers:{'Accept':'application/json'}, cache:'reload' });
+    if(!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+    const json = await res.json();
+    if(!Array.isArray(json)) throw new Error("資料格式錯誤：需要陣列(Array)頂層。");
+
+    state.data = json;
+    state.pageSize = Number(ui.pagesize.value)||25;
+
+    // init dropdowns
+    populateDropdowns();
+
+    applyFilter();
+    renderBody();
+    renderPager();
+  }catch(err){
+    showError(`載入失敗：${err.message}。若是本機檔案，請用本機伺服器（如 python -m http.server）。`);
+  }
+}
+
+bootstrap();
+</script>
+</body>
+</html>
