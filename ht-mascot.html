@@ -254,15 +254,16 @@
     </div>
 
     <div class="controls" aria-label="Demo controls">
-      <button id="btnBubble">Toggle bubble</button>
-      <button id="btnWave">Wave</button>
-      <button id="btnBlink">Blink</button>
-      <button id="btnReset">Reset</button>
+      <!-- <button id="btnBubble">Toggle bubble</button> -->
+      <button id="btnWave">揮揮</button>
+      <button id="btnBlink">眨眼</button>
+      <button id="btnReset">重設</button>
     </div>
 
     <div class="hint">
-      Hover/move for tilt + parallax shadow + glare. Click for a rotating hint.
-      Works with a single <code>&lt;img&gt;</code>; everything else is optional layering.
+      移動滑鼠：傾斜效果 + 小光暈
+      點擊：眨眼
+      定期動畫：蘿蔔蹲、浮動
     </div>
   </main>
 
@@ -444,7 +445,7 @@ document.addEventListener('pointerleave', onViewportLeave);
 wrap.addEventListener('click', onClick);
 
       // Demo buttons
-      document.getElementById('btnBubble').addEventListener('click', () => wrap.classList.toggle('showBubble'));
+      // document.getElementById('btnBubble').addEventListener('click', () => wrap.classList.toggle('showBubble'));
       document.getElementById('btnWave').addEventListener('click', triggerWave);
       document.getElementById('btnBlink').addEventListener('click', triggerBlink);
       document.getElementById('btnReset').addEventListener('click', () => {
