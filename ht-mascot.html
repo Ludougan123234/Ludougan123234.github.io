@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mascot Interactions — single &lt;img&gt; (vanilla)</title>
+  <style>
+    :root{
+      --max-tilt: 10;          /* degrees */
+      --max-shift: 8;          /* px */
+      --shadow-max: 22;        /* px */
+      --float-amp: 10px;
+      --float-dur: 5.2s;
+
+      --glare-size: 140%;
+      --glare-opacity: .22;
+
+      --ring: rgba(16,185,129,.25);
+      --ring2: rgba(16,185,129,.10);
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(1200px 700px at 30% 20%, #f5fff7 0%, #f6f3ff00 60%),
+        radial-gradient(1000px 600px at 70% 70%, #f3fff9 0%, #f6f3ff00 55%),
+        linear-gradient(#fbfbfb, #f7f7f7);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:#111827;
+    }
+
+    .stage{
+      width:min(520px, 92vw);
+      padding:28px 18px;
+      display:grid;
+      gap:14px;
+      justify-items:center;
+    }
+
+    .hint{
+      font-size:14px;
+      opacity:.8;
+      text-align:center;
+      line-height:1.35;
+    }
+
+    /*
+      The wrapper is where we apply transforms, shadows, and overlays.
+      Your mascot stays a single <img>.
+    */
+    .mascotWrap{
+      position:relative;
+      display:inline-block;
+      transform-style:preserve-3d;
+      perspective: 900px;
+      touch-action:none; /* helps pointer events on touch devices */
+    }
+
+    .mascotWrap::before{
+      content:"";
+      position:absolute;
+      inset:-18px -18px -22px -18px;
+      border-radius:26px;
+      background: radial-gradient(260px 180px at 50% 80%, var(--ring), transparent 60%),
+                  radial-gradient(280px 220px at 50% 90%, var(--ring2), transparent 70%);
+      filter: blur(10px);
+      opacity:0;
+      transform: translateZ(-1px);
+      transition: opacity 220ms ease;
+      pointer-events:none;
+    }
+
+    /* Glare overlay (fakes lens/shine following the cursor) */
+    .glare{
+      position:absolute;
+      inset:0;
+      border-radius: 22px;
+      pointer-events:none;
+      opacity: var(--glare-opacity);
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at var(--gx, 50%) var(--gy, 50%),
+          rgba(255,255,255,.85) 0%,
+          rgba(255,255,255,.35) 18%,
+          rgba(255,255,255,0) 42%);
+      transform: translateZ(30px);
+      mask-image: radial-gradient(circle at 50% 55%, #000 0 55%, transparent 70%);
+      -webkit-mask-image: radial-gradient(circle at 50% 55%, #000 0 55%, transparent 70%);
+      filter: blur(.2px);
+    }
+
+    /* Shadow under mascot; moved by cursor to create depth */
+    .shadow{
+      position:absolute;
+      left:50%;
+      top:100%;
+      width: 78%;
+      height: 22px;
+      transform: translate(-50%, 8px);
+      border-radius: 999px;
+      background: radial-gradient(closest-side, rgba(0,0,0,.26), rgba(0,0,0,0));
+      filter: blur(4px);
+      opacity:.75;
+      pointer-events:none;
+    }
+
+    img#mascot{
+      display:block;
+      width:min(340px, 74vw);
+      height:auto;
+      border-radius: 22px;
+      will-change: transform, filter;
+      transform: translateZ(0);
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    /* Idle animation: gentle float + micro breathing */
+    .idle{
+      animation: float var(--float-dur) ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{ transform: translateY(0) scale(1); }
+      45%{ transform: translateY(calc(-1 * var(--float-amp))) scale(1.01); }
+      60%{ transform: translateY(calc(-.6 * var(--float-amp))) scale(1.008); }
+    }
+
+    /* Blink is a quick squash; works even on a single image */
+    .blink{
+      animation: blink 160ms ease-in-out 1;
+    }
+
+    @keyframes blink{
+      0%{ transform: scaleY(1) scaleX(1); }
+      45%{ transform: scaleY(.92) scaleX(1.01); }
+      100%{ transform: scaleY(1) scaleX(1); }
+    }
+
+    /* Hover wave/ta-da: small rotation wiggle */
+    .wave{
+      animation: wave 520ms cubic-bezier(.2,.8,.2,1) 1;
+    }
+
+    @keyframes wave{
+      0%{ transform: rotate(0deg) translateY(0); }
+      20%{ transform: rotate(-2deg) translateY(-2px); }
+      45%{ transform: rotate(2.5deg) translateY(-4px); }
+      70%{ transform: rotate(-1.5deg) translateY(-2px); }
+      100%{ transform: rotate(0deg) translateY(0); }
+    }
+
+    /* Speech bubble */
+    .bubble{
+      position:absolute;
+      right:-10px;
+      top:-10px;
+      transform: translate(15%, -20%) scale(.98);
+      transform-origin: 80% 80%;
+      padding:10px 12px;
+      width: 220px;
+      max-width:min(220px, 65vw);
+      border-radius: 16px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(17,24,39,.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      backdrop-filter: blur(6px);
+    }
+
+    .bubble::after{
+      content:"";
+      position:absolute;
+      left: 26px;
+      bottom:-10px;
+      width:18px;
+      height:18px;
+      background: rgba(255,255,255,.92);
+      border-left: 1px solid rgba(17,24,39,.12);
+      border-bottom: 1px solid rgba(17,24,39,.12);
+      transform: rotate(45deg);
+      border-bottom-left-radius: 4px;
+    }
+
+    .bubble strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .bubble p{
+      margin:0;
+      font-size:13px;
+      line-height:1.35;
+      opacity:.92;
+    }
+
+    .showBubble .bubble{
+      opacity:1;
+      transform: translate(15%, -20%) scale(1);
+    }
+
+    .showBubble.mascotWrap::before{
+      opacity:1;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce){
+      .idle{ animation: none; }
+      .blink, .wave{ animation: none; }
+    }
+
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:6px;
+    }
+
+    button{
+      border: 1px solid rgba(17,24,39,.16);
+      background: rgba(255,255,255,.9);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor:pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+    button:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+    button:active{ transform: translateY(0); box-shadow: 0 6px 14px rgba(0,0,0,.06); }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="mascotWrap idle" id="mascotWrap" aria-label="Interactive mascot">
+      <!-- IMPORTANT: your mascot is a single <img> tag -->
+      <img id="mascot" src="mascot.png" alt="Mascot" />
+
+      <!-- overlays are NOT part of the mascot asset; purely CSS/DOM tricks -->
+      <div class="glare" aria-hidden="true"></div>
+      <div class="shadow" aria-hidden="true"></div>
+
+      <div class="bubble" id="bubble" role="status" aria-live="polite">
+        <strong>Hi! I’m your lab owl.</strong>
+        <p id="bubbleText">Move your cursor—watch the tilt + lens glare. Click me for a tip.</p>
+      </div>
+    </div>
+
+    <div class="controls" aria-label="Demo controls">
+      <button id="btnBubble">Toggle bubble</button>
+      <button id="btnWave">Wave</button>
+      <button id="btnBlink">Blink</button>
+      <button id="btnReset">Reset</button>
+    </div>
+
+    <div class="hint">
+      Hover/move for tilt + parallax shadow + glare. Click for a rotating hint.
+      Works with a single <code>&lt;img&gt;</code>; everything else is optional layering.
+    </div>
+  </main>
+
+  <script>
+    // Vanilla, pointer-friendly, reduced-jank implementation.
+    (function(){
+      const wrap = document.getElementById('mascotWrap');
+      const img  = document.getElementById('mascot');
+      const bubble = document.getElementById('bubble');
+      const bubbleText = document.getElementById('bubbleText');
+      const glare = wrap.querySelector('.glare');
+      const shadow = wrap.querySelector('.shadow');
+
+      // Config
+      const MAX_TILT = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--max-tilt')) || 10;
+      const MAX_SHIFT = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--max-shift')) || 8;
+      const SHADOW_MAX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--shadow-max')) || 22;
+
+      // State
+      let raf = 0;
+      let last = { x: 0.5, y: 0.5, inside: false };
+
+      // Lightweight message rotation
+      const tips = [
+        'I can highlight key specs: MOQ, lead time, dosage forms, and compliance notes.',
+        'Try a subtle “float” idle + a crisp hover “wave” to keep it friendly but professional.',
+        'If you can get layered art (eyes/glasses/arms), we can do real pupil tracking.',
+        'Scroll-triggered tips: change my bubble text based on the section you’re reading.'
+      ];
+      let tipIndex = 0;
+
+      function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+      function setTransforms(nx, ny){
+        // nx,ny in [0,1]
+        const dx = (nx - 0.5) * 2; // [-1,1]
+        const dy = (ny - 0.5) * 2;
+
+        const rotY = dx * MAX_TILT;     // left-right
+        const rotX = -dy * MAX_TILT;    // up-down (invert)
+        const tx = dx * MAX_SHIFT;
+        const ty = dy * MAX_SHIFT;
+
+        // Apply 3D transform to the wrapper so overlays stay aligned.
+        wrap.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(${tx}px, ${ty}px, 0)`;
+
+        // Glare tracks cursor; move the radial gradient focal point
+        wrap.style.setProperty('--gx', `${nx*100}%`);
+        wrap.style.setProperty('--gy', `${ny*100}%`);
+
+        // Shadow moves opposite direction; also squashes slightly to imply depth
+        const sx = -dx * SHADOW_MAX;
+        const sy = -dy * (SHADOW_MAX * 0.35);
+        const squash = 1 - Math.abs(dy) * 0.08;
+        shadow.style.transform = `translate(-50%, 10px) translate(${sx}px, ${sy}px) scaleX(${1 + Math.abs(dx)*0.10}) scaleY(${squash})`;
+        shadow.style.opacity = String(0.62 + (Math.abs(dx)+Math.abs(dy))*0.12);
+      }
+
+      function resetTransforms(){
+        wrap.style.transform = '';
+        wrap.style.removeProperty('--gx');
+        wrap.style.removeProperty('--gy');
+        shadow.style.transform = '';
+        shadow.style.opacity = '';
+      }
+
+      function schedule(){
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          if (!last.inside){
+            // ease back
+            resetTransforms();
+            return;
+          }
+          setTransforms(last.x, last.y);
+        });
+      }
+
+      function pointerToNorm(e){
+        const r = wrap.getBoundingClientRect();
+        const x = clamp((e.clientX - r.left) / r.width, 0, 1);
+        const y = clamp((e.clientY - r.top) / r.height, 0, 1);
+        return { x, y };
+      }
+
+      function onEnter(){
+        last.inside = true;
+        // stop idle float while actively interacting (optional)
+        wrap.classList.remove('idle');
+        schedule();
+      }
+
+      function onMove(e){
+        const p = pointerToNorm(e);
+        last.x = p.x;
+        last.y = p.y;
+        schedule();
+      }
+
+      function onLeave(){
+        last.inside = false;
+        // restore idle
+        wrap.classList.add('idle');
+        schedule();
+      }
+
+      // Click toggles bubble + cycles tips
+      function onClick(){
+        wrap.classList.toggle('showBubble');
+        tipIndex = (tipIndex + 1) % tips.length;
+        bubbleText.textContent = tips[tipIndex];
+
+        // Tiny wave for feedback
+        triggerWave();
+      }
+
+      // Anim triggers (pure CSS classes)
+      function triggerBlink(){
+        img.classList.remove('blink');
+        // force reflow so animation restarts
+        void img.offsetWidth;
+        img.classList.add('blink');
+        setTimeout(() => img.classList.remove('blink'), 220);
+      }
+
+      function triggerWave(){
+        wrap.classList.remove('wave');
+        void wrap.offsetWidth;
+        wrap.classList.add('wave');
+        setTimeout(() => wrap.classList.remove('wave'), 650);
+      }
+
+      // Optional: periodic random blink when idle
+      let blinkTimer = 0;
+      function scheduleIdleBlink(){
+        clearTimeout(blinkTimer);
+        const next = 2400 + Math.random() * 3800;
+        blinkTimer = setTimeout(() => {
+          if (!last.inside) triggerBlink();
+          scheduleIdleBlink();
+        }, next);
+      }
+
+      // Pointer events
+// Listen on the whole viewport, not just the mascot.
+// This makes the mascot feel "aware" of the user's cursor anywhere on screen.
+function viewportToNorm(e){
+  const r = wrap.getBoundingClientRect();
+  const x = clamp((e.clientX - r.left) / r.width, 0, 1);
+  const y = clamp((e.clientY - r.top) / r.height, 0, 1);
+  return { x, y };
+}
+
+function onViewportMove(e){
+  // Treat any movement as "inside" so transforms keep updating.
+  // If you prefer, you can gate this behind a user interaction (e.g., only after hover/click).
+  last.inside = true;
+  wrap.classList.remove('idle');
+  const p = viewportToNorm(e);
+  last.x = p.x;
+  last.y = p.y;
+  schedule();
+}
+
+function onViewportLeave(){
+  // When the pointer leaves the browser window, ease back + resume idle.
+  last.inside = false;
+  wrap.classList.add('idle');
+  schedule();
+}
+
+window.addEventListener('pointermove', onViewportMove, { passive: true });
+window.addEventListener('blur', onViewportLeave);
+// Some browsers fire pointerout from document when leaving the viewport.
+document.addEventListener('pointerleave', onViewportLeave);
+
+// Still keep click on the mascot itself.
+wrap.addEventListener('click', onClick);
+
+      // Demo buttons
+      document.getElementById('btnBubble').addEventListener('click', () => wrap.classList.toggle('showBubble'));
+      document.getElementById('btnWave').addEventListener('click', triggerWave);
+      document.getElementById('btnBlink').addEventListener('click', triggerBlink);
+      document.getElementById('btnReset').addEventListener('click', () => {
+        wrap.classList.remove('showBubble');
+        resetTransforms();
+      });
+
+      // Respect reduced motion: disable blink loop + keep transforms snappy but minimal.
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) scheduleIdleBlink();
+
+      // If image fails to load, make it obvious.
+      img.addEventListener('error', () => {
+        bubbleText.textContent = 'Image failed to load. Set img src="YOUR_MASCOT.png" to your real path.';
+        wrap.classList.add('showBubble');
+      });
+
+      // Initial state
+      wrap.classList.add('showBubble');
+      setTimeout(() => wrap.classList.remove('showBubble'), 1700);
+    })();
+  </script>
+</body>
+</html>
