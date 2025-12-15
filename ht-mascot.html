@@ -61,8 +61,6 @@
       position:absolute;
       inset:-18px -18px -22px -18px;
       border-radius:26px;
-      background: radial-gradient(260px 180px at 50% 80%, var(--ring), transparent 60%),
-                  radial-gradient(280px 220px at 50% 90%, var(--ring2), transparent 70%);
       filter: blur(10px);
       opacity:0;
       transform: translateZ(-1px);
@@ -89,7 +87,7 @@
       filter: blur(.2px);
     }
 
-    /* Shadow under mascot; moved by cursor to create depth */
+    /* Shadow under mascot; moved by cursor to create depth
     .shadow{
       position:absolute;
       left:50%;
@@ -102,7 +100,7 @@
       filter: blur(4px);
       opacity:.75;
       pointer-events:none;
-    }
+    } */
 
     img#mascot{
       display:block;
@@ -246,17 +244,21 @@
 </head>
 <body>
   <main class="stage">
-    <div class="mascotWrap idle blink" id="mascotWrap" aria-label="Interactive mascot">
+    <div class="mascotWrap idle" id="mascotWrap" aria-label="Interactive mascot">
       <div class="gif-hover">
-      <video
+      <!-- <video
         class="hover-video"
-        src="1215.gif"
+        src="./1215.gif"
         muted
         loop
         playsinline
         preload="metadata"
-      ></video>
-    </div>
+      ></video> -->
+      <img
+        id="mascot"
+        src="./1215.gif"
+        alt="Mascot image placeholder. Replace with your own mascot image."
+        draggable="false"/> </div>
 
       <!-- overlays are NOT part of the mascot asset; purely CSS/DOM tricks -->
       <div class="glare" aria-hidden="true"></div>
