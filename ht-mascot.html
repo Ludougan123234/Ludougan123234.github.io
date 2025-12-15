@@ -131,6 +131,16 @@
       animation: blink 160ms ease-in-out 1;
     }
 
+    .gif-hover {
+      width: 300px;
+      cursor: pointer;
+    }
+
+    .hover-video {
+      width: 100%;
+      display: block;
+    }
+
     @keyframes blink{
       0%{ transform: scaleY(1) scaleX(1); }
       45%{ transform: scaleY(.92) scaleX(1.01); }
@@ -237,8 +247,16 @@
 <body>
   <main class="stage">
     <div class="mascotWrap idle" id="mascotWrap" aria-label="Interactive mascot">
-      <!-- IMPORTANT: your mascot is a single <img> tag -->
-      <img id="mascot" src="1215.gif" alt="Mascot" />
+      <div class="gif-hover">
+      <video
+        class="hover-video"
+        src="1215.mp4"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+    </div>
 
       <!-- overlays are NOT part of the mascot asset; purely CSS/DOM tricks -->
       <div class="glare" aria-hidden="true"></div>
@@ -258,7 +276,6 @@
       定期動畫：蘿蔔蹲、浮動
     </div>
   </main>
-
   <script>
     // Vanilla, pointer-friendly, reduced-jank implementation.
     (function(){
@@ -372,6 +389,17 @@
         // Tiny wave for feedback
         triggerWave();
       }
+
+      const container = document.querySelector('.gif-hover');
+      const video = container.querySelector('video');
+
+      container.addEventListener('mouseenter', () => {
+        video.play();
+      });
+
+      container.addEventListener('mouseleave', () => {
+        video.pause(); // freezes exactly on the current frame
+      });
 
       // Anim triggers (pure CSS classes)
       function triggerBlink(){
